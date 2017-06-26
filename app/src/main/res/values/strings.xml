@@ -9,4 +9,9 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
     <!-- Register Activity-->
+
+    <!-- Login Activity -->
+    <string name="login">Login</string>
+    <!-- Login Activity -->
+
 </resources>
