@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Medlog</string>
+
+    <!-- Register Activity-->
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_phone">Enter Phone</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <!-- Register Activity-->
+</resources>
