@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
@@ -30,6 +31,7 @@
             android:id="@+id/password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:hint="@string/enter_password"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -40,16 +42,27 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/password_input"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:text="@string/login"
+        />
+
+    <Button
+        android:id="@+id/create_acc_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:text="@string/create_acc"
         />
 
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_button"
+        android:layout_below="@id/create_acc_button"
         android:layout_centerInParent="true"
         android:visibility="invisible"/>
 

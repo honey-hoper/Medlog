@@ -34,6 +34,6 @@ class RegisterActivity : RegisterView, AppCompatActivity() {
 
     override fun getConfirmPasswordField() = confirm_password_field
 
-    override fun showSnackbar(message: String) = Snackbar.make(register_root_layout, message, Snackbar.LENGTH_SHORT).show()
+    override fun showSnackbar(id: Int) = Snackbar.make(register_root_layout, id, Snackbar.LENGTH_SHORT).show()
 
 }

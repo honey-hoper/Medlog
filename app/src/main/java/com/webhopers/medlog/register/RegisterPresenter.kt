@@ -1,5 +1,6 @@
 package com.webhopers.medlog.register
 
+import com.webhopers.medlog.R
 import com.webhopers.medlog.extensions.isEmpty
 import com.webhopers.medlog.utils.isInternetAvailable
 import java.util.regex.Pattern
@@ -10,7 +11,7 @@ class RegisterPresenter(val view: RegisterView) {
         if (!validInput()) return
 
         if (!isInternetAvailable(view.getContext())) {
-            view.showSnackbar("Internet not available")
+            view.showSnackbar(R.string.no_internet)
             return
         }
 

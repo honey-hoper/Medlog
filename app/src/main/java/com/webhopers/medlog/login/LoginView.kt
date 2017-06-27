@@ -1,16 +1,13 @@
-package com.webhopers.medlog.register
+package com.webhopers.medlog.login
 
 import android.content.Context
 import android.widget.EditText
 
-interface RegisterView {
+interface LoginView {
     fun getContext(): Context
 
-    fun getNameField(): EditText
-    fun getPhoneField(): EditText
     fun getEmailField(): EditText
     fun getPasswordField(): EditText
-    fun getConfirmPasswordField(): EditText
     fun showSnackbar(id: Int)
-
+    fun startRegisterActivity()
 }

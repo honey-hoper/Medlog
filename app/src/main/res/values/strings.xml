@@ -12,6 +12,11 @@
 
     <!-- Login Activity -->
     <string name="login">Login</string>
+    <string name="create_acc">Create Account</string>
     <!-- Login Activity -->
+
+    <!-- Errors -->
+    <string name="no_internet">Not Connected</string>
+    <!-- Errors -->
 
 </resources>
