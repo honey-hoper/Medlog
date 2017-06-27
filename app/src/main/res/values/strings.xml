@@ -18,5 +18,48 @@
     <!-- Errors -->
     <string name="no_internet">Not Connected</string>
     <!-- Errors -->
+    
+    <!--Product Group Name-->
+    <string name="group_product_type">Product Type</string>
+    <string name="group_product_for">Product For</string>
+    <!--Product Group Name-->
+
+    <!--Product Types-->
+    <string-array name="product_types">
+        <item>Tablet</item>
+        <item>Capsule</item>
+        <item>Softgel Capsule</item>
+        <item>Cream</item>
+        <item>Dry Syrup</item>
+        <item>Eye Drops</item>
+        <item>Injection</item>
+        <item>Syrup</item>
+        <item>Facewash</item>
+        <item>Lotion</item>
+        <item>Ointment</item>
+        <item>Powder</item>
+    </string-array>
+    <!--Product Types-->
+
+    <!--Product For-->
+    <string-array name="product_for">
+        <item>Alkalizer</item>
+        <item>Analgesic</item>
+        <item>Anti-Allergic</item>
+        <item>Anti-Biotic</item>
+        <item>Anti-Cold</item>
+        <item>Anti-Cough</item>
+        <item>Anti-Fungal</item>
+        <item>Anti-Gout</item>
+        <item>Anti-Helmentic</item>
+        <item>Anti-Hypertensive</item>
+        <item>Anti-Infective</item>
+        <item>Anti-Inflammatory</item>
+        <item>Anti-Malarial</item>
+        <item>Anti-Migraine</item>
+        <item>Calotrac Tablets</item>
+        <item>Anti-Oxidant</item>
+    </string-array>
+    <!--Product For-->
 
 </resources>
