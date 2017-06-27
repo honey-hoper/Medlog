@@ -1,7 +1,9 @@
 package com.webhopers.medlog.register
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.widget.EditText
 
 import com.webhopers.medlog.R
@@ -9,7 +11,6 @@ import com.webhopers.medlog.extensions.isEmpty
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : RegisterView, AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +22,8 @@ class RegisterActivity : RegisterView, AppCompatActivity() {
 
     //Register View Functions
 
+    override fun getContext() = this
+
     override fun getNameField() = name_field
 
     override fun getPhoneField() = phone_field
@@ -30,4 +33,7 @@ class RegisterActivity : RegisterView, AppCompatActivity() {
     override fun getPasswordField() = password_field
 
     override fun getConfirmPasswordField() = confirm_password_field
+
+    override fun showSnackbar(message: String) = Snackbar.make(register_root_layout, message, Snackbar.LENGTH_SHORT).show()
+
 }
