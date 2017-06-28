@@ -21,7 +21,7 @@ class RecyclerViewAdapter(val context: Context): RecyclerView.Adapter<RecyclerVi
     }
 
     override fun getItemCount(): Int {
-        return 4
+        return 24
     }
 
 

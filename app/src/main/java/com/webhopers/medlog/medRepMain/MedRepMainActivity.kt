@@ -3,10 +3,12 @@ package com.webhopers.medlog.medRepMain
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.widget.GridLayoutManager
 import android.view.MenuItem
 import com.webhopers.medlog.medRepMain.navigationDrawer.ExpandableListAdapter
 
 import com.webhopers.medlog.R
+import com.webhopers.medlog.medRepMain.recyclerView.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_med_rep_main.*
 
 class MedRepMainActivity: AppCompatActivity() {
@@ -22,8 +24,8 @@ class MedRepMainActivity: AppCompatActivity() {
         initUI()
 
 
-        // mr_recycler_view.layoutManager = GridLayoutManager(this, 2)
-        // mr_recycler_view.adapter = RecyclerViewAdapter(this)
+         mr_recycler_view.layoutManager = GridLayoutManager(this, 2)
+         mr_recycler_view.adapter = RecyclerViewAdapter(this)
 
     }
 
