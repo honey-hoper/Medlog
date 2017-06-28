@@ -15,13 +15,18 @@
     <string name="create_acc">Create Account</string>
     <!-- Login Activity -->
 
+    <!-- MedRepMainActivity -->
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
+    <!-- MedRepMainActivity -->
+
     <!-- Errors -->
     <string name="no_internet">Not Connected</string>
     <!-- Errors -->
     
     <!--Product Group Name-->
-    <string name="group_product_type">Product Type</string>
-    <string name="group_product_for">Product For</string>
+    <string name="group_product_type">Section Form Wise Product</string>
+    <string name="group_product_for">Classification Wise Product</string>
     <!--Product Group Name-->
 
     <!--Product Types-->

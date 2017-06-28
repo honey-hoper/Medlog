@@ -19,8 +19,9 @@
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".MedRepMain.MedRepMainActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".medRepMain.MedRepMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
