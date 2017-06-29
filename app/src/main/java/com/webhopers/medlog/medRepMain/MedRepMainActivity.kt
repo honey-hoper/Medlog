@@ -9,12 +9,14 @@ import com.webhopers.medlog.medRepMain.navigationDrawer.ExpandableListAdapter
 
 import com.webhopers.medlog.R
 import com.webhopers.medlog.medRepMain.recyclerView.RecyclerViewAdapter
+import com.webhopers.medlog.medRepMain.recyclerView.RecyclerViewDecorator
+import com.webhopers.medlog.utils.convertDpToPixels
 import kotlinx.android.synthetic.main.activity_med_rep_main.*
 
 class MedRepMainActivity: AppCompatActivity() {
 
 
-    var drawerToggle: ActionBarDrawerToggle? = null
+    lateinit var drawerToggle: ActionBarDrawerToggle
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +28,9 @@ class MedRepMainActivity: AppCompatActivity() {
 
          mr_recycler_view.layoutManager = GridLayoutManager(this, 2)
          mr_recycler_view.adapter = RecyclerViewAdapter(this)
+        mr_recycler_view.addItemDecoration(RecyclerViewDecorator(2,
+                convertDpToPixels(1f, resources).toInt(),
+                true))
 
     }
 
@@ -49,18 +54,18 @@ class MedRepMainActivity: AppCompatActivity() {
         exp_list_view.setOnGroupExpandListener {
             if (it == 0) exp_list_view.collapseGroup(1) else exp_list_view.collapseGroup(0)
         }
-        drawer.addDrawerListener(drawerToggle!!)
+        drawer.addDrawerListener(drawerToggle)
     }
 
     private fun addActionBarDrawerToggle() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        drawerToggle?.syncState()
+        drawerToggle.syncState()
 
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (drawerToggle!!.onOptionsItemSelected(item)) return true
+        if (drawerToggle.onOptionsItemSelected(item)) return true
 
         return super.onOptionsItemSelected(item)
     }
