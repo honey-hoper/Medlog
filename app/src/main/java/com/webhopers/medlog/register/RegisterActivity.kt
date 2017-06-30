@@ -21,7 +21,10 @@ class RegisterActivity : RegisterView, AppCompatActivity() {
         register_button.setOnClickListener { presenter.onRegister() }
     }
 
-    override fun onDestroy() = presenter.unsubscribe()
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unsubscribe()
+    }
 
     //Register View Functions
 
