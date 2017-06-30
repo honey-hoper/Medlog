@@ -12,11 +12,11 @@ import kotlinx.android.synthetic.main.recycler_view_item.view.*
 import java.util.*
 
 
-class RecyclerViewAdapter(val context: Context): RecyclerView.Adapter<RecyclerViewHolder>() {
+class RecyclerViewAdapterMR(val context: Context): RecyclerView.Adapter<RecyclerViewHolderMR>() {
 
     val arr = intArrayOf(R.drawable.med1, R.drawable.med2, R.drawable.med3)
 
-    override fun onBindViewHolder(holder: RecyclerViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerViewHolderMR?, position: Int) {
         Picasso.with(context)
                 .load(arr[Math.abs(Random().nextInt() % 3)])
                 .resize(convertDpToPixels(100f, context.resources).toInt(), convertDpToPixels(100f, context.resources).toInt())
@@ -24,9 +24,9 @@ class RecyclerViewAdapter(val context: Context): RecyclerView.Adapter<RecyclerVi
                 .into(holder!!.itemView.image_view)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerViewHolderMR {
         val view = context.inflateView(R.layout.recycler_view_item)
-        val viewHolder = RecyclerViewHolder(view)
+        val viewHolder = RecyclerViewHolderMR(view)
         return viewHolder
     }
 
@@ -36,5 +36,5 @@ class RecyclerViewAdapter(val context: Context): RecyclerView.Adapter<RecyclerVi
 
 
 }
-class RecyclerViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+class RecyclerViewHolderMR(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 }
