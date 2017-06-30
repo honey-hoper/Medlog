@@ -22,6 +22,9 @@
                 android:id="@+id/email_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
+                android:maxLength="50"
                 android:hint="@string/enter_email"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -36,6 +39,8 @@
                 android:id="@+id/password_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:maxLength="50"
                 android:inputType="textPassword"
                 android:hint="@string/enter_password"/>
 

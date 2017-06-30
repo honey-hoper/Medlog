@@ -16,6 +16,9 @@
             android:id="@+id/name_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"
+            android:maxLength="50"
             android:hint="@string/enter_name"
             />
 
@@ -32,6 +35,9 @@
             android:id="@+id/phone_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"
+            android:maxLength="50"
             android:hint="@string/enter_phone"
             />
 
@@ -50,6 +56,9 @@
             android:id="@+id/email_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:maxLength="50"
             android:hint="@string/enter_email"
             />
 
@@ -66,8 +75,10 @@
             android:id="@+id/password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_password"
+            android:maxLines="1"
+            android:maxLength="50"
             android:inputType="textPassword"
+            android:hint="@string/enter_password"
             />
 
     </android.support.design.widget.TextInputLayout>
@@ -83,8 +94,10 @@
             android:id="@+id/confirm_password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/confirm_password"
+            android:maxLines="1"
+            android:maxLength="50"
             android:inputType="textPassword"
+            android:hint="@string/confirm_password"
             />
 
     </android.support.design.widget.TextInputLayout>
