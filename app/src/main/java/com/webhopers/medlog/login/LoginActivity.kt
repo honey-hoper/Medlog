@@ -4,22 +4,30 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.view.View
 
 import com.webhopers.medlog.R
+import com.webhopers.medlog.medRepMain.MedRepMainActivity
 import com.webhopers.medlog.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : LoginView, AppCompatActivity() {
 
+    lateinit var presenter: LoginPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val presenter = LoginPresenter(this)
+        presenter = LoginPresenter(this)
 
-        login_button.setOnClickListener { presenter.loginUser() }
+        login_button.setOnClickListener { presenter.onLogin() }
         create_acc_button.setOnClickListener { presenter.createUserAccount() }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unsubscribe()
     }
 
     //Login View Functions
@@ -36,4 +44,19 @@ class LoginActivity : LoginView, AppCompatActivity() {
         startActivity(Intent(this, RegisterActivity::class.java))
         finish()
     }
+
+    override fun showProgressBar(bool: Boolean) {
+        progress_bar_login.visibility = if (bool) View.VISIBLE else View.GONE
+    }
+
+    override fun enableButtons(bool: Boolean) {
+        login_button.isEnabled = bool
+        create_acc_button.isEnabled = bool
+    }
+
+    override fun startMedRepActivity() {
+        startActivity(Intent(this, MedRepMainActivity::class.java))
+        finish()
+    }
+
 }

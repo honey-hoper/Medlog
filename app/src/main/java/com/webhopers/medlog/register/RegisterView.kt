@@ -12,5 +12,8 @@ interface RegisterView {
     fun getPasswordField(): EditText
     fun getConfirmPasswordField(): EditText
     fun showSnackbar(id: Int)
+    fun showProgressBar(bool: Boolean)
+    fun enableButton(bool: Boolean)
+    fun startMedRepActivity()
 
 }

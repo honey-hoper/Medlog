@@ -2,19 +2,31 @@ package com.webhopers.medlog.register
 
 import com.webhopers.medlog.R
 import com.webhopers.medlog.extensions.isEmpty
-import com.webhopers.medlog.utils.isInternetAvailable
+import com.webhopers.medlog.services.auth.FirebaseAuthService
+import com.webhopers.medlog.utils.isConnected
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import java.util.regex.Pattern
 
-class RegisterPresenter(val view: RegisterView) {
+class RegisterPresenter(val view: RegisterView,
+                        val disposable: CompositeDisposable = CompositeDisposable()) {
 
-    fun registerUser() {
+    fun onRegister() {
         if (!validInput()) return
 
-        if (!isInternetAvailable(view.getContext())) {
+        if (!isConnected(view.getContext())) {
             view.showSnackbar(R.string.no_internet)
             return
         }
 
+        val email = view.getEmailField().text.toString()
+        val password = view.getPasswordField().text.toString()
+
+        view.showProgressBar(true)
+        view.enableButton(false)
+        createUser(email, password)
     }
 
     private fun validInput(): Boolean {
@@ -35,6 +47,11 @@ class RegisterPresenter(val view: RegisterView) {
 
         if (view.getPasswordField().isEmpty()) {
             view.getPasswordField().error = "Empty"
+            return false
+        }
+
+        if (view.getPasswordField().text.toString().length < 6) {
+            view.getPasswordField().setError("Minimum length must be 6")
             return false
         }
 
@@ -64,5 +81,23 @@ class RegisterPresenter(val view: RegisterView) {
         val matcher = Pattern.compile("\\w+@\\w+.\\w+").matcher(view.getEmailField().text.toString())
         return matcher.find()
     }
+
+    private fun createUser(email: String, password: String) {
+        disposable.add(FirebaseAuthService.createUser(email, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onComplete = {
+                            view.startMedRepActivity()
+                        },
+                        onError = {
+                            view.showProgressBar(false)
+                            view.enableButton(true)
+                        }
+                ))
+
+    }
+
+    fun unsubscribe() = disposable.clear()
 
 }

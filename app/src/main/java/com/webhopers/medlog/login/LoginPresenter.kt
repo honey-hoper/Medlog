@@ -2,21 +2,34 @@ package com.webhopers.medlog.login
 
 import com.webhopers.medlog.R
 import com.webhopers.medlog.extensions.isEmpty
-import com.webhopers.medlog.utils.isInternetAvailable
+import com.webhopers.medlog.services.auth.FirebaseAuthService
+import com.webhopers.medlog.utils.isConnected
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 
-class LoginPresenter(val view: LoginView) {
+class LoginPresenter(val view: LoginView,
+                     val disposable: CompositeDisposable = CompositeDisposable()) {
 
-    fun loginUser() {
+    fun onLogin() {
         if (!validInput()) return
 
-        if (!isInternetAvailable(view.getContext())) {
+        if (!isConnected(view.getContext())) {
             view.showSnackbar(R.string.no_internet)
             return
         }
 
+        val email = view.getEmailField().text.toString()
+        val password = view.getPasswordField().text.toString()
+
+        view.showProgressBar(true)
+        view.enableButtons(false)
+        signInUser(email, password)
+
     }
 
-    fun validInput(): Boolean {
+    private fun validInput(): Boolean {
         if (view.getEmailField().isEmpty()) {
             view.getEmailField().error = "Empty"
             return false
@@ -30,7 +43,25 @@ class LoginPresenter(val view: LoginView) {
         return true
     }
 
+    private fun signInUser(email: String, password: String) {
+        disposable.add(FirebaseAuthService.signInUser(email, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onComplete = {
+                            view.startMedRepActivity()
+                        },
+                        onError = {
+                            view.enableButtons(true)
+                            view.showProgressBar(false)
+                        }))
+    }
+
     fun createUserAccount() {
         view.startRegisterActivity()
+    }
+
+    fun unsubscribe() {
+        disposable.clear()
     }
 }

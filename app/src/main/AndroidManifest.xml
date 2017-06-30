@@ -28,6 +28,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
+
+        </activity>
+
+        <activity android:name=".splash.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Splash">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

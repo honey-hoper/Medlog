@@ -10,4 +10,7 @@ interface LoginView {
     fun getPasswordField(): EditText
     fun showSnackbar(id: Int)
     fun startRegisterActivity()
+    fun showProgressBar(bool: Boolean)
+    fun enableButtons(bool: Boolean)
+    fun startMedRepActivity()
 }

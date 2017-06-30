@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "403447005848",
+    "firebase_url": "https://medlog-7ee87.firebaseio.com",
+    "project_id": "medlog-7ee87",
+    "storage_bucket": "medlog-7ee87.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403447005848:android:e694e1421085d8bb",
+        "android_client_info": {
+          "package_name": "com.webhopers.medlog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403447005848-nlj7n1o8g2dl363d65m02o7dphdafggo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.webhopers.medlog",
+            "certificate_hash": "618ca6a964751807addd080e3f4e0b08db9b46a0"
+          }
+        },
+        {
+          "client_id": "403447005848-449qpll4o0629obhae8laf86jnqg6tao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbzfDWy4ZrCh0MIT_w3jUSv8_o16hFjuM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "403447005848-449qpll4o0629obhae8laf86jnqg6tao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

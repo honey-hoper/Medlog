@@ -29,6 +29,10 @@
     <string name="group_product_for">Classification Wise Product</string>
     <!--Product Group Name-->
 
+    <!-- MedRep Main Menu -->
+    <string name="signout">signout</string>
+    <!-- MedRep Main Menu -->
+
     <!--Product Types-->
     <string-array name="product_types">
         <item>Tablet</item>

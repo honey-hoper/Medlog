@@ -14,18 +14,6 @@ fun isConnected(context: Context): Boolean {
     return cm.activeNetworkInfo != null && cm.activeNetworkInfo.isConnected
 }
 
-fun isInternetAvailable(context: Context): Boolean {
-    if (!isConnected(context))
-        return false
-
-    try {
-        val address = InetAddress.getByName("www.google.com")
-        return !address.equals("")
-    } catch (e: UnknownHostException) {}
-
-    return false
-}
-
 fun convertDpToPixels(dip: Float, r: Resources) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.displayMetrics)
 
 fun cropSquare(bitmap: Bitmap): Bitmap {
