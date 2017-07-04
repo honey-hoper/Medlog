@@ -42,8 +42,9 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:background="@color/colorAccent"
-            android:src="@drawable/biophar"/>
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/medlog_nav"/>
 
         <ExpandableListView
             android:id="@+id/exp_list_view_mr"

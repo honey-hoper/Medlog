@@ -4,18 +4,12 @@ import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 
 import com.webhopers.medlog.R
-import com.webhopers.medlog.adminMain.recyclerView.RecyclerViewAdapterAdmin
-import com.webhopers.medlog.medRepMain.navigationDrawer.ExpandableListAdapter
-import com.webhopers.medlog.medRepMain.recyclerView.RecyclerViewAdapterMR
-import com.webhopers.medlog.medRepMain.recyclerView.RecyclerViewDecorator
-import com.webhopers.medlog.utils.convertDpToPixels
+import com.webhopers.medlog.adapters.ExpandableListAdapter
 import kotlinx.android.synthetic.main.activity_admin_main.*
-import kotlinx.android.synthetic.main.activity_med_rep_main.*
 
 class AdminMainActivity : AppCompatActivity() {
 
@@ -29,11 +23,6 @@ class AdminMainActivity : AppCompatActivity() {
         drawerToggle = ActionBarDrawerToggle(this, drawer_admin, R.string.open_drawer, R.string.close_drawer)
         initUI()
 
-        recycler_view_admin.layoutManager = GridLayoutManager(this, 2)
-        recycler_view_admin.adapter = RecyclerViewAdapterAdmin(this)
-        recycler_view_admin.addItemDecoration(RecyclerViewDecorator(2,
-                convertDpToPixels(1f, resources).toInt(),
-                true))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

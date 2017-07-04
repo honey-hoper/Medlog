@@ -1,4 +1,4 @@
-package com.webhopers.medlog.medRepMain.recyclerView
+package com.webhopers.medlog.adapters.itemDecorator
 
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView

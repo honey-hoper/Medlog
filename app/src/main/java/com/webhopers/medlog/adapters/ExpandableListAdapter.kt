@@ -1,4 +1,4 @@
-package com.webhopers.medlog.medRepMain.navigationDrawer
+package com.webhopers.medlog.adapters
 
 import android.content.Context
 import android.view.View

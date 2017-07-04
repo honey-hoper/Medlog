@@ -17,7 +17,7 @@
     </style>
 
     <style name="Splash" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:windowBackground">@color/colorAccent</item>
+        <item name="android:windowBackground">@drawable/medlog_splash</item>
     </style>
 
 </resources>
