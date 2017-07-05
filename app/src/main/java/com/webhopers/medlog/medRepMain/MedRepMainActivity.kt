@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import com.google.firebase.database.FirebaseDatabase
@@ -17,6 +18,7 @@ import com.webhopers.medlog.adapters.itemDecorator.RecyclerViewDecorator
 import com.webhopers.medlog.splash.SplashActivity
 import com.webhopers.medlog.utils.convertDpToPixels
 import kotlinx.android.synthetic.main.activity_med_rep_main.*
+import kotlinx.android.synthetic.main.exp_list_child_item_mr.view.*
 
 class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
 
@@ -30,18 +32,25 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_rep_main)
 
-
         presenter = MedRepMainPresenter(this, this)
+
         drawerToggle = ActionBarDrawerToggle(this, drawer_mr, R.string.open_drawer, R.string.close_drawer)
+
+        exp_list_view_mr.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
+            presenter.changeRecyclerViewAdapter(v.list_item.text.toString(), resources)
+            drawer_mr.closeDrawers()
+            return@setOnChildClickListener  false
+        }
+
         initUI()
 
 
         recycler_view_mr.layoutManager = GridLayoutManager(this, 2)
-        recycler_view_mr.adapter = RecyclerViewAdapterMR(this, resources, FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child("images"))
-
+//        recycler_view_mr.adapter = RecyclerViewAdapterMR(this, resources, FirebaseDatabase
+//                .getInstance()
+//                .reference
+//                .child("tablets"))
+//
         recycler_view_mr.addItemDecoration(RecyclerViewDecorator(2,
                 convertDpToPixels(1f, resources).toInt(),
                 true))
@@ -115,6 +124,6 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
         if (bool) progressDialog.show() else progressDialog.hide()
     }
 
-
+    override fun getRecyclerView() = recycler_view_mr
 
 }
