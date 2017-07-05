@@ -2,7 +2,9 @@ package com.webhopers.medlog.register
 
 import com.webhopers.medlog.R
 import com.webhopers.medlog.extensions.isEmpty
+import com.webhopers.medlog.models.MedRepInfo
 import com.webhopers.medlog.services.auth.FirebaseAuthService
+import com.webhopers.medlog.services.database.FirebaseDatabaseService
 import com.webhopers.medlog.utils.isConnected
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -21,12 +23,17 @@ class RegisterPresenter(val view: RegisterView,
             return
         }
 
+        val name = view.getNameField().text.toString()
         val email = view.getEmailField().text.toString()
+        val phone = view.getPhoneField().text.toString()
+        val uid = ""
         val password = view.getPasswordField().text.toString()
+
+        val mr = MedRepInfo(uid, name, phone, email)
 
         view.showProgressBar(true)
         view.enableButton(false)
-        createUser(email, password)
+        createUser(mr, password)
     }
 
     private fun validInput(): Boolean {
@@ -82,12 +89,14 @@ class RegisterPresenter(val view: RegisterView,
         return matcher.find()
     }
 
-    private fun createUser(email: String, password: String) {
-        disposable.add(FirebaseAuthService.createUser(email, password)
+    private fun createUser(mr: MedRepInfo, password: String) {
+        disposable.add(FirebaseAuthService.createUser(mr.email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onComplete = {
+                            mr.uid = FirebaseAuthService.getUID()
+                            FirebaseDatabaseService.addUser(mr)
                             view.startMedRepActivity()
                         },
                         onError = {

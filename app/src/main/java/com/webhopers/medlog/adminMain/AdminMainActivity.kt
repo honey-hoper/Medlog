@@ -1,19 +1,15 @@
 package com.webhopers.medlog.adminMain
 
-import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageActivity
 import com.theartofdev.edmodo.cropper.CropImageView
 
 import com.webhopers.medlog.R
@@ -55,19 +51,9 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.admin_main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (drawerToggle.onOptionsItemSelected(item)) return true
-        val id = item?.itemId
-
-        when (id) {
-            R.id.signout_option_admin -> presenter.signout()
-        }
-
         return super.onOptionsItemSelected(item)
     }
 

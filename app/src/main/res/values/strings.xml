@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Medlog</string>
 
+    <!-- master account -->
+    <string name="admin">admin</string>
+    <string name="pass">b276qmwbfm</string>
+    <!-- master account -->
+
     <!-- Register Activity-->
     <string name="enter_name">Enter Name</string>
     <string name="enter_phone">Enter Phone</string>

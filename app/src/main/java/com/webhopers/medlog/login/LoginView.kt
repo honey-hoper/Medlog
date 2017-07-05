@@ -13,4 +13,5 @@ interface LoginView {
     fun showProgressBar(bool: Boolean)
     fun enableButtons(bool: Boolean)
     fun startMedRepActivity()
+    fun startAdminMainActivity()
 }

@@ -1,5 +1,6 @@
 package com.webhopers.medlog.login
 
+import android.content.res.Resources
 import com.webhopers.medlog.R
 import com.webhopers.medlog.extensions.isEmpty
 import com.webhopers.medlog.services.auth.FirebaseAuthService
@@ -10,6 +11,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
 class LoginPresenter(val view: LoginView,
+                     val resources: Resources,
                      val disposable: CompositeDisposable = CompositeDisposable()) {
 
     fun onLogin() {
@@ -20,13 +22,19 @@ class LoginPresenter(val view: LoginView,
             return
         }
 
+        view.showProgressBar(true)
+        view.enableButtons(false)
+
         val email = view.getEmailField().text.toString()
         val password = view.getPasswordField().text.toString()
 
-        view.showProgressBar(true)
-        view.enableButtons(false)
-        signInUser(email, password)
+        if (email ==  resources.getString(R.string.admin)
+                && password == resources.getString(R.string.pass)) {
+            view.startAdminMainActivity()
+            return
+        }
 
+        signInUser(email, password)
     }
 
     private fun validInput(): Boolean {

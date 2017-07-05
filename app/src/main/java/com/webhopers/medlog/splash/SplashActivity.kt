@@ -20,7 +20,7 @@ class SplashActivity: AppCompatActivity() {
         if (!FirebaseAuthService.isSessionActive())
             startActivity(Intent(this, LoginActivity::class.java))
         else
-            startActivity(Intent(this, AdminMainActivity::class.java))
+            startActivity(Intent(this, MedRepMainActivity::class.java))
         finish()
     }
 }

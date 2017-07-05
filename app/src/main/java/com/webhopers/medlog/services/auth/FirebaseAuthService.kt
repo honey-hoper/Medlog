@@ -14,6 +14,10 @@ class FirebaseAuthService {
             return auth.currentUser != null
         }
 
+        fun getUID(): String? {
+            return auth.currentUser?.uid
+        }
+
         fun createUser(email: String, password: String): Completable {
             return Completable.create { e -> auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener {

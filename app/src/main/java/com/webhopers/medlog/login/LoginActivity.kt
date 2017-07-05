@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar
 import android.view.View
 
 import com.webhopers.medlog.R
+import com.webhopers.medlog.adminMain.AdminMainActivity
 import com.webhopers.medlog.medRepMain.MedRepMainActivity
 import com.webhopers.medlog.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -19,7 +20,7 @@ class LoginActivity : LoginView, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        presenter = LoginPresenter(this)
+        presenter = LoginPresenter(this, resources)
 
         login_button.setOnClickListener { presenter.onLogin() }
         create_acc_button.setOnClickListener { presenter.createUserAccount() }
@@ -56,6 +57,11 @@ class LoginActivity : LoginView, AppCompatActivity() {
 
     override fun startMedRepActivity() {
         startActivity(Intent(this, MedRepMainActivity::class.java))
+        finish()
+    }
+
+    override fun startAdminMainActivity() {
+        startActivity(Intent(this, AdminMainActivity::class.java))
         finish()
     }
 
