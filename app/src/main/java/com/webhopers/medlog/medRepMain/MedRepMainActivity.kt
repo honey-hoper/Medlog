@@ -6,14 +6,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
-import com.google.firebase.database.FirebaseDatabase
 import com.webhopers.medlog.adapters.ExpandableListAdapter
 
 import com.webhopers.medlog.R
-import com.webhopers.medlog.adapters.RecyclerViewAdapterMR
 import com.webhopers.medlog.adapters.itemDecorator.RecyclerViewDecorator
 import com.webhopers.medlog.splash.SplashActivity
 import com.webhopers.medlog.utils.convertDpToPixels
@@ -44,17 +41,6 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
 
         initUI()
 
-
-        recycler_view_mr.layoutManager = GridLayoutManager(this, 2)
-//        recycler_view_mr.adapter = RecyclerViewAdapterMR(this, resources, FirebaseDatabase
-//                .getInstance()
-//                .reference
-//                .child("tablets"))
-//
-        recycler_view_mr.addItemDecoration(RecyclerViewDecorator(2,
-                convertDpToPixels(1f, resources).toInt(),
-                true))
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -79,6 +65,7 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
         addToolbar()
         initNavigationDrawer()
         addActionBarDrawerToggle()
+        initRecyclerView()
         createProgressDialog()
     }
 
@@ -106,12 +93,20 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
 
     }
 
+    private fun initRecyclerView() {
+        recycler_view_mr.layoutManager = GridLayoutManager(this, 2)
+        recycler_view_mr.addItemDecoration(RecyclerViewDecorator(2,
+                convertDpToPixels(1f, resources).toInt(),
+                true))
+    }
+
     private fun createProgressDialog() {
         progressDialog = ProgressDialog(this, ProgressDialog.STYLE_SPINNER)
         progressDialog.setCanceledOnTouchOutside(false)
         progressDialog.isIndeterminate = true
         progressDialog.setMessage("wait")
     }
+
 
     // MedRepMain View Functions
 
