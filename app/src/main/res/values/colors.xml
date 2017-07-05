@@ -9,5 +9,7 @@
     <color name="colorPrimaryDark">#D3E0E2</color>
     <color name="colorAccent">#F1684E</color>
 
+    <color name="colorAccentDark">#7F3729</color>
+
 
 </resources>

@@ -20,6 +20,10 @@
     <string name="close_drawer">Close</string>
     <!-- MedRepMainActivity -->
 
+    <!-- AdminMainActivity -->
+    <string name="upload_new">Upload New</string>
+    <!-- AdminMainActivity -->
+
     <!-- Errors -->
     <string name="no_internet">Not Connected</string>
     <!-- Errors -->

@@ -1,13 +1,20 @@
 package com.webhopers.medlog.adminMain
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageActivity
+import com.theartofdev.edmodo.cropper.CropImageView
 
 import com.webhopers.medlog.R
 import com.webhopers.medlog.adapters.ExpandableListAdapter
@@ -24,6 +31,8 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
 
     lateinit var presenter: AdminMainPresenter
 
+    lateinit var path: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_main)
@@ -33,10 +42,14 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
         drawerToggle = ActionBarDrawerToggle(this, drawer_admin, R.string.open_drawer, R.string.close_drawer)
 
         exp_list_view_admin.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-            presenter.changeRecyclerViewAdapter(v.list_item.text.toString(), resources)
+            path = v.list_item.text.toString()
+            presenter.changeRecyclerViewAdapter(path, resources)
             drawer_admin.closeDrawers()
+            upload_button.visibility = View.VISIBLE
             return@setOnChildClickListener  false
         }
+
+        upload_button.setOnClickListener { startCropImageActivity() }
 
         initUI()
 
@@ -56,6 +69,26 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unsubscribe()
+    }
+
+    fun startCropImageActivity() {
+        CropImage.activity()
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .start(this)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            val result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK && result.uri != null) {
+                presenter.upload(result.uri, path)
+            }
+        }
     }
 
     //UI element creation
@@ -100,10 +133,7 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
     }
 
     private fun createProgressDialog() {
-        progressDialog = ProgressDialog(this, ProgressDialog.STYLE_SPINNER)
-        progressDialog.setCanceledOnTouchOutside(false)
-        progressDialog.isIndeterminate = true
-        progressDialog.setMessage("wait")
+        progressDialog = ProgressDialog(this)
     }
 
     // MedRepMain View Functions
@@ -117,5 +147,18 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
         if (bool) progressDialog.show() else progressDialog.hide()
     }
 
+    override fun setProgressDialogStyle(style: Int, message: String, indeterminate: Boolean) {
+        progressDialog.setProgressStyle(style)
+        progressDialog.setMessage(message)
+        progressDialog.isIndeterminate = indeterminate
+    }
+
+    override fun setProgressDialogProgress(progress: Int) {
+        progressDialog.progress = progress
+    }
+
     override fun getRecyclerView() = recycler_view_admin
+
+    override fun makeToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
 }

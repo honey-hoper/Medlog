@@ -20,7 +20,9 @@
                 android:elevation="5dp"
                 android:background="@color/colorPrimary"
                 app:title="@string/app_name"
-                app:titleTextColor="@color/colorAccent"/>
+                app:titleTextColor="@color/colorAccent"
+                app:subtitle="Admin"
+                app:subtitleTextColor="@color/colorAccentDark" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -29,6 +31,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <Button
+            android:id="@+id/upload_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/accent_btn_selector"
+            android:text="@string/upload_new"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
