@@ -4,8 +4,10 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.res.Resources
 import android.net.Uri
+import android.support.v7.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.webhopers.medlog.adapters.RecyclerViewAdapterMR
+import com.webhopers.medlog.adapters.SelectableAdapter
 import com.webhopers.medlog.services.auth.FirebaseAuthService
 import com.webhopers.medlog.services.storage.FirebaseStorageService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,7 +16,9 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
 class AdminMainPresenter(val context: Context,
+                         val activity: AppCompatActivity,
                          val view: AdminMainView,
+                         val resources: Resources,
                          val disposable: CompositeDisposable = CompositeDisposable()) {
 
     fun signout() {
@@ -30,7 +34,7 @@ class AdminMainPresenter(val context: Context,
                 .reference
                 .child(path)
 
-        val adapter = RecyclerViewAdapterMR(context, resources, ref)
+        val adapter = SelectableAdapter(activity, resources, ref)
         view.getRecyclerView().adapter = adapter
     }
 

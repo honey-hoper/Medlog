@@ -54,6 +54,8 @@ dependencies {
 
     compile 'com.theartofdev.edmodo:android-image-cropper:2.4.6'
 
+    compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
+
     testCompile 'junit:junit:4.12'
 }
 repositories {

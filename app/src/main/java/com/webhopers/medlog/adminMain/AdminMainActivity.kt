@@ -33,7 +33,7 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_main)
 
-        presenter = AdminMainPresenter(this, this)
+        presenter = AdminMainPresenter(this, this, this, resources)
 
         drawerToggle = ActionBarDrawerToggle(this, drawer_admin, R.string.open_drawer, R.string.close_drawer)
 
