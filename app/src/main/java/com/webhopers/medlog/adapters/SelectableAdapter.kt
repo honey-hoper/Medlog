@@ -17,7 +17,6 @@ import com.webhopers.medlog.models.ImageModel
 import com.webhopers.medlog.services.database.FirebaseDatabaseService
 import com.webhopers.medlog.services.storage.FirebaseStorageService
 import com.webhopers.medlog.utils.convertDpToPixels
-import kotlinx.android.synthetic.main.activity_admin_main.*
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
 class SelectableAdapter(val activity: AppCompatActivity,

@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,27 +21,23 @@
         <activity
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/BlueBackground"/>
+            android:theme="@style/BlueBackground" />
         <activity
             android:name=".medRepMain.MedRepMainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".splash.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Splash">
-
-
-        </activity>
-        <activity android:name=".adminMain.AdminMainActivity"
+            android:theme="@style/Splash"/>
+        <activity
+            android:name=".adminMain.AdminMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-
+        </activity>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
+        <activity android:name=".viewImage.ViewImageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,9 +45,6 @@
             </intent-filter>
 
         </activity>
-
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"/>
-
     </application>
 
 </manifest>
