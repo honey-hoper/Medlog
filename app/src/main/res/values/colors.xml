@@ -11,5 +11,7 @@
 
     <color name="colorAccentDark">#7F3729</color>
 
+    <color name="colorAccentTransparent">#F1684E55</color>
+
 
 </resources>

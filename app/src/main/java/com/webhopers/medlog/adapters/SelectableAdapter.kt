@@ -1,6 +1,7 @@
 package com.webhopers.medlog.adapters
 
 import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
 import android.util.SparseArray
@@ -124,6 +125,7 @@ class SelectableAdapter(val activity: AppCompatActivity,
         holder?.itemView?.tag = model
 
     }
+
 
 
     class ViewHolder(val view: View?,
