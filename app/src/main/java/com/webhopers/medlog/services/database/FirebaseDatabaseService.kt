@@ -1,6 +1,7 @@
 package com.webhopers.medlog.services.database
 
 import com.google.firebase.database.FirebaseDatabase
+import com.webhopers.medlog.models.ImageModel
 import com.webhopers.medlog.models.MedRepInfo
 
 class FirebaseDatabaseService {
@@ -11,9 +12,21 @@ class FirebaseDatabaseService {
         val users = "users"
 
         fun addMed(path: String, url: String) {
-            database.getReference(path)
+            val uid = database.getReference(path)
                     .push()
-                    .setValue(url)
+                    .key
+
+            val imageModel = ImageModel(uid, url)
+            database.getReference(path)
+                    .child(uid)
+                    .setValue(imageModel)
+
+        }
+
+        fun removeMed(uid: String, path: String) {
+            database.getReference(path)
+                    .child(uid)
+                    .removeValue()
         }
 
         fun addUser(mr: MedRepInfo) {

@@ -26,6 +26,10 @@ class FirebaseStorageService {
                         }
             }
         }
+
+        fun deleteFile(url: String) {
+            storage.getReferenceFromUrl(url).delete()
+        }
     }
 
 

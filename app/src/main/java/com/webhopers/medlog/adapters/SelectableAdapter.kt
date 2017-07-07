@@ -13,17 +13,23 @@ import com.google.firebase.database.Query
 import com.squareup.picasso.Picasso
 import com.webhopers.medlog.R
 import com.webhopers.medlog.extensions.inflateView
+import com.webhopers.medlog.models.ImageModel
+import com.webhopers.medlog.services.database.FirebaseDatabaseService
+import com.webhopers.medlog.services.storage.FirebaseStorageService
 import com.webhopers.medlog.utils.convertDpToPixels
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
 class SelectableAdapter(val activity: AppCompatActivity,
                         val resources: Resources,
+                        val path: String,
                         query: Query?) :
 
-        FirebaseRecyclerAdapter<String, SelectableAdapter.ViewHolder>(String::class.java,
+        FirebaseRecyclerAdapter<ImageModel, SelectableAdapter.ViewHolder>(ImageModel::class.java,
                 R.layout.recycler_view_item,
                 ViewHolder::class.java,
                 query) {
+
+
 
     val multiSelector = MultiSelector()
     var actMode: ActionMode? = null
@@ -80,16 +86,28 @@ class SelectableAdapter(val activity: AppCompatActivity,
         }
 
         private fun deleteItems() {
-            println("------------Delete")
-
 
             selectedPositions.forEach {
-                println(it)
+                val model = itemViews[it].tag as ImageModel
+                FirebaseStorageService.deleteFile(model.url!!)
+                FirebaseDatabaseService.removeMed(model.uid!!, path)
+                itemViews.put(it, null)
+                notifyItemRemoved(it)
             }
+
+            val newItems = SparseArray<View>()
+            var curIndex = 0
+            for (i in 0..itemViews.size() - 1) {
+                if (itemViews[i] != null) {
+                    newItems.put(curIndex, itemViews[i])
+                    curIndex++
+                }
+            }
+
+            itemViews = newItems
             actMode?.finish()
             multiSelector.isSelectable = false
             selectedPositions.clear()
-            itemViews.clear()
         }
 
     }
@@ -99,11 +117,14 @@ class SelectableAdapter(val activity: AppCompatActivity,
         return ViewHolder(view, adapterListener, activity, multiSelectorMode, multiSelector)
     }
 
-    override fun populateViewHolder(holder: ViewHolder?, model: String?, position: Int) {
-        itemViews.put(position, holder?.createView(model, resources))
+
+    override fun populateViewHolder(holder: ViewHolder?, model: ImageModel?, position: Int) {
+        itemViews.put(position, holder?.createView(model?.url, resources))
         toggleItemSelection(selectedPositions.contains(position), position)
-        holder?.itemView?.tag = holder
+        holder?.itemView?.tag = model
+
     }
+
 
     class ViewHolder(val view: View?,
                      val adapterListener: AdapterListener,
@@ -138,9 +159,6 @@ class SelectableAdapter(val activity: AppCompatActivity,
                 val isSelected = adapterListener.getSelectedPositions().contains(layoutPosition)
                 adapterListener.toggleItemSelectionAdapter(!isSelected, layoutPosition)
             }
-            println("-------------on Click-----------")
-            println("multiselector----${multiSelector.isSelectable}")
-
         }
 
         fun viewLongClicked() {
@@ -149,8 +167,6 @@ class SelectableAdapter(val activity: AppCompatActivity,
                 activity.startSupportActionMode(multiSelectorCallback)
                 adapterListener.toggleItemSelectionAdapter(true, layoutPosition)
             }
-            println("-----------------on Long click--------------")
-
         }
     }
 

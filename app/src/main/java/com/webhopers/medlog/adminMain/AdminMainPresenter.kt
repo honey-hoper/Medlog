@@ -34,7 +34,7 @@ class AdminMainPresenter(val context: Context,
                 .reference
                 .child(path)
 
-        val adapter = SelectableAdapter(activity, resources, ref)
+        val adapter = SelectableAdapter(activity, resources, path, ref)
         view.getRecyclerView().adapter = adapter
     }
 
