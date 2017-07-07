@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/colorAccent"
     android:clickable="true"
-    android:foreground="?attr/selectableItemBackground">
+    android:foreground="@drawable/recycler_image_selector">
 
     <com.webhopers.medlog.views.SquareImageView
         android:id="@+id/recycler_view_image_view"

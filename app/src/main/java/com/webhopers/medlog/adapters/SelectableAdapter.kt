@@ -1,7 +1,6 @@
 package com.webhopers.medlog.adapters
 
 import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
 import android.util.SparseArray
@@ -18,6 +17,7 @@ import com.webhopers.medlog.models.ImageModel
 import com.webhopers.medlog.services.database.FirebaseDatabaseService
 import com.webhopers.medlog.services.storage.FirebaseStorageService
 import com.webhopers.medlog.utils.convertDpToPixels
+import kotlinx.android.synthetic.main.activity_admin_main.*
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
 class SelectableAdapter(val activity: AppCompatActivity,
