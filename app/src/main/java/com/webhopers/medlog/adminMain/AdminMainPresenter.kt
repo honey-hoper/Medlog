@@ -4,12 +4,12 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.res.Resources
 import android.net.Uri
+import android.provider.ContactsContract
 import android.support.v7.app.AppCompatActivity
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.webhopers.medlog.adapters.SelectableAdapter
+import com.webhopers.medlog.dataHolder.DataHolder
 import com.webhopers.medlog.services.auth.FirebaseAuthService
-import com.webhopers.medlog.services.database.FirebaseDatabaseService
 import com.webhopers.medlog.services.storage.FirebaseStorageService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -21,6 +21,10 @@ class AdminMainPresenter(val context: Context,
                          val view: AdminMainView,
                          val resources: Resources,
                          val disposable: CompositeDisposable = CompositeDisposable()) {
+
+    init {
+        DataHolder.changeView(view)
+    }
 
     fun signout() {
         view.showProgressDialog(true)
@@ -35,8 +39,12 @@ class AdminMainPresenter(val context: Context,
                 .reference
                 .child(path)
 
+
         view.showProgressBar(true)
-        getAllFromPath(context, path, resources, ref)
+        DataHolder.changePath(path)
+
+        val adapter = SelectableAdapter(view, context, activity, resources, path, ref)
+        view.getRecyclerView().adapter = adapter
 
     }
 
@@ -60,23 +68,6 @@ class AdminMainPresenter(val context: Context,
                         onNext = {i -> view.setProgressDialogProgress(i) }))
     }
 
-    fun getAllFromPath(context: Context, path: String, resources: Resources, ref: DatabaseReference) {
-        disposable.add(FirebaseDatabaseService.getAllFromPath2(path)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(
-                        onError = {
-                            view.showProgressBar(false)
-                        },
-                        onSuccess = {arrayList ->
-                            view.showProgressBar(false)
-                            if (arrayList != null)  {
-                                val adapter = SelectableAdapter(context, activity, resources, arrayList, path, ref)
-                                view.getRecyclerView().adapter = adapter
-                            }
-                        }
-                ))
-    }
 
     fun unsubscribe() {
         disposable.clear()

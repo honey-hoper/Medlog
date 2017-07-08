@@ -15,6 +15,8 @@ import com.google.firebase.database.Query
 import com.squareup.picasso.Picasso
 import com.stfalcon.frescoimageviewer.ImageViewer
 import com.webhopers.medlog.R
+import com.webhopers.medlog.adminMain.AdminMainView
+import com.webhopers.medlog.dataHolder.DataHolder
 import com.webhopers.medlog.extensions.inflateView
 import com.webhopers.medlog.models.ImageModel
 import com.webhopers.medlog.services.database.FirebaseDatabaseService
@@ -22,10 +24,10 @@ import com.webhopers.medlog.services.storage.FirebaseStorageService
 import com.webhopers.medlog.utils.convertDpToPixels
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
-class SelectableAdapter(val context: Context,
+class SelectableAdapter(val view: AdminMainView,
+                        val context: Context,
                         val activity: AppCompatActivity,
                         val resources: Resources,
-                        val urls: ArrayList<String>?,
                         val path: String,
                         query: Query?) :
 
@@ -119,11 +121,12 @@ class SelectableAdapter(val context: Context,
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val view = parent?.context?.inflateView(R.layout.recycler_view_item)
-        return ViewHolder(context, resources, view, urls, adapterListener, activity, multiSelectorMode, multiSelector)
+        return ViewHolder(context, resources, view, adapterListener, activity, multiSelectorMode, multiSelector)
     }
 
 
     override fun populateViewHolder(holder: ViewHolder?, model: ImageModel?, position: Int) {
+        view.showProgressBar(false)
         itemViews.put(position, holder?.createView(model?.url, resources, position))
         toggleItemSelection(selectedPositions.contains(position), position)
         holder?.itemView?.tag = model
@@ -135,7 +138,6 @@ class SelectableAdapter(val context: Context,
     class ViewHolder(val context: Context,
                      val resources: Resources,
                      val view: View?,
-                     val urls: ArrayList<String>?,
                      val adapterListener: AdapterListener,
                      val activity: AppCompatActivity,
                      val multiSelectorCallback: ModalMultiSelectorCallback,
@@ -181,13 +183,16 @@ class SelectableAdapter(val context: Context,
         }
 
         fun startImageViewer(position: Int) {
-            if (urls != null) {
-                ImageViewer.Builder(context, urls)
-                        .setStartPosition(position)
-                        .setImageMarginPx(convertDpToPixels(25f, resources).toInt())
-                        .show()
-                Fresco.initialize(context)
-            }
+            val urls = DataHolder.Urls()
+            if (urls == null)
+                return
+            
+            ImageViewer.Builder(context, urls)
+                    .setStartPosition(position)
+                    .setImageMarginPx(convertDpToPixels(25f, resources).toInt())
+                    .show()
+            Fresco.initialize(context)
+
         }
     }
 
