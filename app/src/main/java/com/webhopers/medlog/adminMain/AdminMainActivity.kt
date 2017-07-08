@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.exp_list_child_item_mr.view.*
 
 class AdminMainActivity : AdminMainView, AppCompatActivity() {
 
+
     lateinit var drawerToggle: ActionBarDrawerToggle
     lateinit var progressDialog: ProgressDialog
 
@@ -146,5 +147,9 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
     override fun getRecyclerView() = recycler_view_admin
 
     override fun makeToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+    override fun showProgressBar(bool: Boolean) {
+        progress_bar_admin.visibility = if (bool) View.VISIBLE else View.GONE
+    }
 
 }

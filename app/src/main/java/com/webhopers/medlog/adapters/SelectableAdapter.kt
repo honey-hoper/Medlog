@@ -1,5 +1,6 @@
 package com.webhopers.medlog.adapters
 
+import android.content.Context
 import android.content.res.Resources
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
@@ -8,9 +9,11 @@ import android.view.*
 import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback
 import com.bignerdranch.android.multiselector.MultiSelector
 import com.bignerdranch.android.multiselector.SwappingHolder
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.Query
 import com.squareup.picasso.Picasso
+import com.stfalcon.frescoimageviewer.ImageViewer
 import com.webhopers.medlog.R
 import com.webhopers.medlog.extensions.inflateView
 import com.webhopers.medlog.models.ImageModel
@@ -19,8 +22,10 @@ import com.webhopers.medlog.services.storage.FirebaseStorageService
 import com.webhopers.medlog.utils.convertDpToPixels
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
-class SelectableAdapter(val activity: AppCompatActivity,
+class SelectableAdapter(val context: Context,
+                        val activity: AppCompatActivity,
                         val resources: Resources,
+                        val urls: ArrayList<String>?,
                         val path: String,
                         query: Query?) :
 
@@ -114,12 +119,12 @@ class SelectableAdapter(val activity: AppCompatActivity,
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val view = parent?.context?.inflateView(R.layout.recycler_view_item)
-        return ViewHolder(view, adapterListener, activity, multiSelectorMode, multiSelector)
+        return ViewHolder(context, resources, view, urls, adapterListener, activity, multiSelectorMode, multiSelector)
     }
 
 
     override fun populateViewHolder(holder: ViewHolder?, model: ImageModel?, position: Int) {
-        itemViews.put(position, holder?.createView(model?.url, resources))
+        itemViews.put(position, holder?.createView(model?.url, resources, position))
         toggleItemSelection(selectedPositions.contains(position), position)
         holder?.itemView?.tag = model
 
@@ -127,7 +132,10 @@ class SelectableAdapter(val activity: AppCompatActivity,
 
 
 
-    class ViewHolder(val view: View?,
+    class ViewHolder(val context: Context,
+                     val resources: Resources,
+                     val view: View?,
+                     val urls: ArrayList<String>?,
                      val adapterListener: AdapterListener,
                      val activity: AppCompatActivity,
                      val multiSelectorCallback: ModalMultiSelectorCallback,
@@ -136,7 +144,7 @@ class SelectableAdapter(val activity: AppCompatActivity,
             SwappingHolder(view,
                     MultiSelector()) {
 
-        fun createView(url: String?, r: Resources): View {
+        fun createView(url: String?, r: Resources, position: Int): View {
             itemView.apply {
                 Picasso.with(context)
                         .load(url)
@@ -144,7 +152,7 @@ class SelectableAdapter(val activity: AppCompatActivity,
                         .centerCrop()
                         .into(recycler_view_image_view)
 
-                setOnClickListener { viewClicked() }
+                setOnClickListener { viewClicked(position) }
                 isLongClickable=true
                 setOnLongClickListener {
                     viewLongClicked()
@@ -155,10 +163,12 @@ class SelectableAdapter(val activity: AppCompatActivity,
             return itemView
         }
 
-        fun viewClicked() {
+        fun viewClicked(position: Int) {
             if (multiSelector.isSelectable) {
                 val isSelected = adapterListener.getSelectedPositions().contains(layoutPosition)
                 adapterListener.toggleItemSelectionAdapter(!isSelected, layoutPosition)
+            } else {
+                startImageViewer(position)
             }
         }
 
@@ -167,6 +177,16 @@ class SelectableAdapter(val activity: AppCompatActivity,
                 multiSelector.isSelectable = true
                 activity.startSupportActionMode(multiSelectorCallback)
                 adapterListener.toggleItemSelectionAdapter(true, layoutPosition)
+            }
+        }
+
+        fun startImageViewer(position: Int) {
+            if (urls != null) {
+                ImageViewer.Builder(context, urls)
+                        .setStartPosition(position)
+                        .setImageMarginPx(convertDpToPixels(25f, resources).toInt())
+                        .show()
+                Fresco.initialize(context)
             }
         }
     }

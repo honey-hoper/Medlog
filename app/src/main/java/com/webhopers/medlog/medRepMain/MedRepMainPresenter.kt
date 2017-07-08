@@ -50,4 +50,8 @@ class MedRepMainPresenter(val view: MedRepMainView,
                         }
                 ))
     }
+
+    fun unsubscribe() {
+        disposable.clear()
+    }
 }

@@ -61,6 +61,11 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unsubscribe()
+    }
+
     //UI element creation
 
     private fun initUI() {

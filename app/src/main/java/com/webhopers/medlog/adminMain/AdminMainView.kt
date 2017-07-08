@@ -13,5 +13,6 @@ interface AdminMainView {
     fun setProgressDialogProgress(progress: Int)
     fun getRecyclerView(): RecyclerView
     fun makeToast(message: String)
+    fun showProgressBar(bool: Boolean)
 
 }
