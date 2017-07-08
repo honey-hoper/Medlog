@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.webhopers.medlog.adapters.ExpandableListAdapter
 
 import com.webhopers.medlog.R
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_med_rep_main.*
 import kotlinx.android.synthetic.main.exp_list_child_item_mr.view.*
 
 class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
+
 
     lateinit var drawerToggle: ActionBarDrawerToggle
     lateinit var progressDialog: ProgressDialog
@@ -120,5 +122,9 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
     }
 
     override fun getRecyclerView() = recycler_view_mr
+
+    override fun showProgressBar(bool: Boolean) {
+        progress_bar_mr.visibility = if (bool) View.VISIBLE else View.GONE
+    }
 
 }

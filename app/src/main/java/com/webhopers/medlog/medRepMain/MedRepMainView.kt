@@ -7,4 +7,5 @@ interface MedRepMainView {
     fun startSplashActivity()
     fun showProgressDialog(bool: Boolean)
     fun getRecyclerView(): RecyclerView
+    fun showProgressBar(bool: Boolean)
 }

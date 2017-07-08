@@ -56,5 +56,24 @@ class FirebaseDatabaseService {
                         })
             }
         }
+
+        fun getAllFromPath2(path: String): Single<ArrayList<String>> {
+            return Single.create<ArrayList<String>> { e ->
+                database.getReference(path)
+                        .addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onCancelled(error: DatabaseError?) {
+                                e.onError(Throwable("Error: ${error?.message}" ))
+                            }
+
+                            override fun onDataChange(snapshot: DataSnapshot?) {
+                                val list: ArrayList<String> = ArrayList<String>()
+                                for (x in snapshot!!.children)
+                                    list.add(x.getValue(ImageModel::class.java)!!.url!!)
+                                e.onSuccess(list)
+                            }
+
+                        })
+            }
+        }
     }
 }
