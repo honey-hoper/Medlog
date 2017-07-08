@@ -186,7 +186,7 @@ class SelectableAdapter(val view: AdminMainView,
             val urls = DataHolder.Urls()
             if (urls == null)
                 return
-            
+
             ImageViewer.Builder(context, urls)
                     .setStartPosition(position)
                     .setImageMarginPx(convertDpToPixels(25f, resources).toInt())

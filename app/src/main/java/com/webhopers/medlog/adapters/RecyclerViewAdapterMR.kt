@@ -11,14 +11,16 @@ import com.google.firebase.database.Query
 import com.squareup.picasso.Picasso
 import com.stfalcon.frescoimageviewer.ImageViewer
 import com.webhopers.medlog.R
+import com.webhopers.medlog.dataHolder.DataHolder
 import com.webhopers.medlog.extensions.inflateView
+import com.webhopers.medlog.medRepMain.MedRepMainView
 import com.webhopers.medlog.models.ImageModel
 import com.webhopers.medlog.utils.convertDpToPixels
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
-class RecyclerViewAdapterMR(val context: Context,
+class RecyclerViewAdapterMR(val view: MedRepMainView,
+                            val context: Context,
                             val resources: Resources,
-                            var urls: ArrayList<String>?,
                             query: Query?)
             : FirebaseRecyclerAdapter<ImageModel, RecyclerViewAdapterMR.ViewHolderMR>(ImageModel::class.java,
                 R.layout.recycler_view_item,
@@ -28,16 +30,16 @@ class RecyclerViewAdapterMR(val context: Context,
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolderMR {
         val view = context.inflateView(R.layout.recycler_view_item)
-        return ViewHolderMR(view, urls, context, resources)
+        return ViewHolderMR(view, context, resources)
     }
 
     override fun populateViewHolder(viewHolder: ViewHolderMR?, model: ImageModel?, position: Int) {
+        view.showProgressBar(false)
         viewHolder?.bindData(context, resources, model?.url, position)
     }
 
 
     class ViewHolderMR(itemView: View?,
-                       val urls: ArrayList<String>?,
                        val context: Context,
                        val resources: Resources)
 
@@ -53,13 +55,16 @@ class RecyclerViewAdapterMR(val context: Context,
         }
 
         fun startImageViewer(position: Int) {
-            if (urls != null) {
-                ImageViewer.Builder(context, urls)
-                        .setStartPosition(position)
-                        .setImageMarginPx(convertDpToPixels(25f, resources).toInt())
-                        .show()
-                Fresco.initialize(context)
-            }
+            val urls = DataHolder.Urls()
+            if (urls == null)
+                return
+
+            ImageViewer.Builder(context, urls)
+                    .setStartPosition(position)
+                    .setImageMarginPx(convertDpToPixels(25f, resources).toInt())
+                    .show()
+            Fresco.initialize(context)
+
         }
     }
 

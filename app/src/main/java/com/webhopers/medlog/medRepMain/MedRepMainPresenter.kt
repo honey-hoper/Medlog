@@ -5,6 +5,7 @@ import android.content.res.Resources
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.webhopers.medlog.adapters.RecyclerViewAdapterMR
+import com.webhopers.medlog.dataHolder.DataHolder
 import com.webhopers.medlog.services.auth.FirebaseAuthService
 import com.webhopers.medlog.services.database.FirebaseDatabaseService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,8 +14,11 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
 class MedRepMainPresenter(val view: MedRepMainView,
-                          val context: Context,
-                          val disposable: CompositeDisposable = CompositeDisposable()) {
+                          val context: Context) {
+
+    init {
+        DataHolder.changeView(view)
+    }
 
 
     fun signout() {
@@ -30,28 +34,12 @@ class MedRepMainPresenter(val view: MedRepMainView,
                 .child(path)
 
         view.showProgressBar(true)
-        getAllFromPath(context, path, resources, ref)
+        DataHolder.changePath(path)
+
+        val adapter = RecyclerViewAdapterMR(view, context, resources, ref)
+        view.getRecyclerView().adapter = adapter
+
     }
 
-    fun getAllFromPath(context: Context, path: String, resources: Resources, ref: DatabaseReference) {
-        disposable.add(FirebaseDatabaseService.getAllFromPath2(path)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(
-                        onError = {
-                            view.showProgressBar(false)
-                        },
-                        onSuccess = {arrayList ->
-                            view.showProgressBar(false)
-                           if (arrayList != null)  {
-                               val adapter = RecyclerViewAdapterMR(context, resources, arrayList, ref)
-                               view.getRecyclerView().adapter = adapter
-                           }
-                        }
-                ))
-    }
 
-    fun unsubscribe() {
-        disposable.clear()
-    }
 }
