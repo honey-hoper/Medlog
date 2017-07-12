@@ -2,8 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/saved_option_mr"
+        android:title="@string/open_saved"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/signout_option_mr"
         android:title="@string/signout"
         app:showAsAction="never"/>
+
+
 
 </menu>

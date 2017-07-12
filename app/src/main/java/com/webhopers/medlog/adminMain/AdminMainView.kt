@@ -1,9 +1,7 @@
 package com.webhopers.medlog.adminMain
 
-import android.app.Activity
 import android.app.ProgressDialog
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import com.webhopers.medlog.interfaces.ViewInterface
 
 interface AdminMainView: ViewInterface {

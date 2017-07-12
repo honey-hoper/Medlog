@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.exp_list_child_item_mr.view.*
 
 class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
 
-
     lateinit var drawerToggle: ActionBarDrawerToggle
     lateinit var progressDialog: ProgressDialog
 
@@ -31,7 +30,7 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_rep_main)
 
-        presenter = MedRepMainPresenter(this, this)
+        presenter = MedRepMainPresenter(this, this, this)
 
         drawerToggle = ActionBarDrawerToggle(this, drawer_mr, R.string.open_drawer, R.string.close_drawer)
 
@@ -55,7 +54,8 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
         val id = item?.itemId
 
         when (id) {
-             R.id.signout_option_mr -> presenter.signout()
+            R.id.signout_option_mr -> presenter.signout()
+            R.id.saved_option_mr -> presenter.startSavedImagesIntent()
         }
 
         return super.onOptionsItemSelected(item)
@@ -126,5 +126,8 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
     override fun showProgressBar(bool: Boolean) {
         progress_bar_mr.visibility = if (bool) View.VISIBLE else View.GONE
     }
+
+    override fun startIntentActivity(intent: Intent) = startActivity(intent)
+
 
 }

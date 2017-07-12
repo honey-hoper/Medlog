@@ -1,20 +1,22 @@
 package com.webhopers.medlog.medRepMain
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
-import com.google.firebase.database.DatabaseReference
+import android.net.Uri
+import android.os.Environment
+import android.support.v7.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.webhopers.medlog.adapters.RecyclerViewAdapterMR
 import com.webhopers.medlog.dataHolder.DataHolder
 import com.webhopers.medlog.services.auth.FirebaseAuthService
-import com.webhopers.medlog.services.database.FirebaseDatabaseService
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
+import java.io.File
+import java.io.FileFilter
+
 
 class MedRepMainPresenter(val view: MedRepMainView,
-                          val context: Context) {
+                          val context: Context,
+                          val activity: AppCompatActivity) {
 
     init {
         DataHolder.changeView(view)
@@ -36,8 +38,22 @@ class MedRepMainPresenter(val view: MedRepMainView,
         view.showProgressBar(true)
         DataHolder.changePath(path)
 
-        val adapter = RecyclerViewAdapterMR(view, context, resources, ref)
+        val adapter = RecyclerViewAdapterMR(view, context, activity, resources, ref)
         view.getRecyclerView().adapter = adapter
+
+    }
+
+    fun startSavedImagesIntent() {
+        val file = File("${Environment
+                .getExternalStorageDirectory()
+                .absolutePath}/medlog/")
+        val files = file.listFiles(FileFilter { pathname -> return@FileFilter pathname.name.contains(".jpg") })
+
+        val intent = Intent()
+        intent.setAction(Intent.ACTION_VIEW)
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.setDataAndType(Uri.fromFile(files[0]), "image/*")
+        view.startIntentActivity(intent)
 
     }
 
