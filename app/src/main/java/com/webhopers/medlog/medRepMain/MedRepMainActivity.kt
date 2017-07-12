@@ -13,6 +13,7 @@ import com.webhopers.medlog.adapters.ExpandableListAdapter
 
 import com.webhopers.medlog.R
 import com.webhopers.medlog.adapters.itemDecorator.RecyclerViewDecorator
+import com.webhopers.medlog.services.database.RealmDatabaseService
 import com.webhopers.medlog.splash.SplashActivity
 import com.webhopers.medlog.utils.convertDpToPixels
 import kotlinx.android.synthetic.main.activity_med_rep_main.*
@@ -55,7 +56,8 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
 
         when (id) {
             R.id.signout_option_mr -> presenter.signout()
-            R.id.saved_option_mr -> presenter.startSavedImagesIntent()
+            R.id.saved_option_mr -> RealmDatabaseService.showResult()
+            R.id.delete_all_playlists -> RealmDatabaseService.deleteAll()
         }
 
         return super.onOptionsItemSelected(item)

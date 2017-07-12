@@ -7,9 +7,16 @@
         android:title="@string/open_saved"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/delete_all_playlists"
+        android:title="Delete all Playlists"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/signout_option_mr"
         android:title="@string/signout"
         app:showAsAction="never"/>
+
+
+
 
 
 

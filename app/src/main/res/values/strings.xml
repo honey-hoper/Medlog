@@ -23,7 +23,7 @@
     <!-- MedRepMainActivity -->
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
-    <string name="open_saved">Open Saved</string>
+    <string name="open_saved">Open Playlist</string>
     <!-- MedRepMainActivity -->
 
     <!-- AdminMainActivity -->
@@ -40,7 +40,7 @@
     <!--Product Group Name-->
 
     <!-- MedRep Main Menu -->
-    <string name="signout">signout</string>
+    <string name="signout">Signout</string>
     <!-- MedRep Main Menu -->
 
     <!--Product Types-->

@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback
 import com.bignerdranch.android.multiselector.MultiSelector
 import com.bignerdranch.android.multiselector.SwappingHolder
@@ -21,8 +22,13 @@ import com.webhopers.medlog.R
 import com.webhopers.medlog.dataHolder.DataHolder
 import com.webhopers.medlog.extensions.inflateView
 import com.webhopers.medlog.medRepMain.MedRepMainView
+import com.webhopers.medlog.models.Image
 import com.webhopers.medlog.models.ImageModel
+import com.webhopers.medlog.models.Playlist
+import com.webhopers.medlog.services.database.RealmDatabaseService
 import com.webhopers.medlog.utils.convertDpToPixels
+import io.realm.RealmList
+import io.realm.exceptions.RealmPrimaryKeyConstraintException
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
 class RecyclerViewAdapterMR(val view: MedRepMainView,
@@ -66,7 +72,7 @@ class RecyclerViewAdapterMR(val view: MedRepMainView,
 
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             when (item.itemId) {
-                R.id.action_create_playlist -> TODO()
+                R.id.action_create_playlist -> createPlaylist()
                 else -> return false
             }
             return true
@@ -87,6 +93,27 @@ class RecyclerViewAdapterMR(val view: MedRepMainView,
             }
             selectedPositions.clear()
             actMode = null
+        }
+    }
+
+    fun createPlaylist(playlistName: String = "test1") {
+
+        val urls = RealmList<Image>()
+        selectedPositions.forEach {
+            val model = itemViews[it].tag as ImageModel
+            urls.add(Image(model.url!!))
+        }
+
+        actMode?.finish()
+        multiSelector.isSelectable = false
+        selectedPositions.clear()
+
+        val playlist = Playlist(playlistName, urls)
+        try {
+            RealmDatabaseService.createPlaylist(playlist)
+            Toast.makeText(context, "Created", Toast.LENGTH_SHORT).show()
+        } catch (e: RealmPrimaryKeyConstraintException) {
+            println("Primary Key Exists")
         }
     }
 
