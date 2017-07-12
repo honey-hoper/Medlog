@@ -43,6 +43,12 @@
     <string name="signout">Signout</string>
     <!-- MedRep Main Menu -->
 
+    <!-- Dialogs -->
+    <string name="enter_playlist_name">Enter Playlist Name</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
+    <!-- Dialogs -->
+
     <!--Product Types-->
     <string-array name="product_types">
         <item>Tablet</item>

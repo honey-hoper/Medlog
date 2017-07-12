@@ -32,11 +32,9 @@ object RealmDatabaseService {
 
 
     fun deleteAll() {
-//        val result = realm.where(Playlist::class.java)
-//                .findAll()
-        realm.executeTransaction {
-//            result.deleteAllFromRealm()
-            deleteAll()
+
+        realm.executeTransaction { realm ->
+            realm.deleteAll()
         }
     }
 

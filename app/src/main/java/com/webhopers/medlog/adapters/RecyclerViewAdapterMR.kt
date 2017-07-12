@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso
 import com.stfalcon.frescoimageviewer.ImageViewer
 import com.webhopers.medlog.R
 import com.webhopers.medlog.dataHolder.DataHolder
+import com.webhopers.medlog.dialogs.PlaylistNameDialog
 import com.webhopers.medlog.extensions.inflateView
 import com.webhopers.medlog.medRepMain.MedRepMainView
 import com.webhopers.medlog.models.Image
@@ -28,7 +29,6 @@ import com.webhopers.medlog.models.Playlist
 import com.webhopers.medlog.services.database.RealmDatabaseService
 import com.webhopers.medlog.utils.convertDpToPixels
 import io.realm.RealmList
-import io.realm.exceptions.RealmPrimaryKeyConstraintException
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
 class RecyclerViewAdapterMR(val view: MedRepMainView,
@@ -72,7 +72,7 @@ class RecyclerViewAdapterMR(val view: MedRepMainView,
 
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             when (item.itemId) {
-                R.id.action_create_playlist -> createPlaylist()
+                R.id.action_create_playlist -> PlaylistNameDialog(context, this@RecyclerViewAdapterMR::createPlaylist)
                 else -> return false
             }
             return true
@@ -96,7 +96,7 @@ class RecyclerViewAdapterMR(val view: MedRepMainView,
         }
     }
 
-    fun createPlaylist(playlistName: String = "test1") {
+    fun createPlaylist(playlistName: String) {
 
         val urls = RealmList<Image>()
         selectedPositions.forEach {
@@ -109,12 +109,8 @@ class RecyclerViewAdapterMR(val view: MedRepMainView,
         selectedPositions.clear()
 
         val playlist = Playlist(playlistName, urls)
-        try {
-            RealmDatabaseService.createPlaylist(playlist)
-            Toast.makeText(context, "Created", Toast.LENGTH_SHORT).show()
-        } catch (e: RealmPrimaryKeyConstraintException) {
-            println("Primary Key Exists")
-        }
+        RealmDatabaseService.createPlaylist(playlist)
+        Toast.makeText(context, "Created", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolderMR {
