@@ -10,4 +10,5 @@ interface MedRepMainView : ViewInterface{
     fun showProgressDialog(bool: Boolean)
     fun getRecyclerView(): RecyclerView
     fun startIntentActivity(intent: Intent)
+    fun makeToast(message: String)
 }

@@ -1,22 +1,31 @@
 package com.webhopers.medlog.medRepMain
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
 import android.os.Environment
 import android.support.v7.app.AppCompatActivity
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.google.firebase.database.FirebaseDatabase
+import com.stfalcon.frescoimageviewer.ImageViewer
+import com.webhopers.medlog.R
 import com.webhopers.medlog.adapters.RecyclerViewAdapterMR
 import com.webhopers.medlog.dataHolder.DataHolder
 import com.webhopers.medlog.services.auth.FirebaseAuthService
+import com.webhopers.medlog.services.database.RealmDatabaseService
+import com.webhopers.medlog.utils.convertDpToPixels
+import kotlinx.android.synthetic.main.playlist_picker_dialog.*
 import java.io.File
 import java.io.FileFilter
+import java.util.*
 
 
 class MedRepMainPresenter(val view: MedRepMainView,
                           val context: Context,
-                          val activity: AppCompatActivity) {
+                          val activity: AppCompatActivity,
+                          val resources: Resources) {
 
     init {
         DataHolder.changeView(view)
@@ -55,6 +64,50 @@ class MedRepMainPresenter(val view: MedRepMainView,
         intent.setDataAndType(Uri.fromFile(files[0]), "image/*")
         view.startIntentActivity(intent)
 
+    }
+
+    fun showPlaylistPicker() {
+
+        val playlists = RealmDatabaseService.showAllPlaylists()
+        if (playlists.isEmpty()) {
+            view.makeToast("No Playlist")
+            return
+        }
+
+        var selectedVal = -1
+
+        val arr: Array<String?> = Array(playlists.size) {
+            return@Array playlists[it].name
+        }
+
+        val dialog = Dialog(activity)
+        dialog.setTitle("Pick Playlist")
+        dialog.setContentView(R.layout.playlist_picker_dialog)
+
+        val picker = dialog.playlist_picker
+        picker.minValue = 0
+        picker.maxValue = playlists.size - 1
+        picker.wrapSelectorWheel = false
+        picker.displayedValues = arr
+        picker.setOnValueChangedListener { picker, oldVal, newVal -> selectedVal = newVal }
+
+        val selectButton = dialog.select_playlist
+        selectButton.setOnClickListener {
+
+            if (selectedVal == -1) return@setOnClickListener
+
+            val urls = playlists[selectedVal].urls?.map { it.url }
+
+            ImageViewer.Builder(context, urls)
+                    .setStartPosition(0)
+                    .setImageMarginPx(convertDpToPixels(25f, resources).toInt())
+                    .show()
+
+            Fresco.initialize(context)
+
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
 

@@ -47,6 +47,7 @@
     <string name="enter_playlist_name">Enter Playlist Name</string>
     <string name="create">Create</string>
     <string name="cancel">Cancel</string>
+    <string name="select">Select</string>
     <!-- Dialogs -->
 
     <!--Product Types-->

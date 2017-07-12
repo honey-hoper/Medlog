@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.webhopers.medlog.adapters.ExpandableListAdapter
 
 import com.webhopers.medlog.R
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.exp_list_child_item_mr.view.*
 
 class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
 
+
     lateinit var drawerToggle: ActionBarDrawerToggle
     lateinit var progressDialog: ProgressDialog
 
@@ -31,7 +33,7 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_rep_main)
 
-        presenter = MedRepMainPresenter(this, this, this)
+        presenter = MedRepMainPresenter(this, this, this, resources)
 
         drawerToggle = ActionBarDrawerToggle(this, drawer_mr, R.string.open_drawer, R.string.close_drawer)
 
@@ -56,7 +58,7 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
 
         when (id) {
             R.id.signout_option_mr -> presenter.signout()
-            R.id.saved_option_mr -> RealmDatabaseService.showResult()
+            R.id.saved_option_mr -> presenter.showPlaylistPicker()
             R.id.delete_all_playlists -> RealmDatabaseService.deleteAll()
         }
 
@@ -131,5 +133,6 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
 
     override fun startIntentActivity(intent: Intent) = startActivity(intent)
 
+    override fun makeToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 }
