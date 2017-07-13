@@ -1,5 +1,6 @@
 package com.webhopers.medlog.adapters
 
+import android.app.Dialog
 import android.content.Context
 import android.content.res.Resources
 import android.support.v7.app.AppCompatActivity
@@ -29,6 +30,7 @@ import com.webhopers.medlog.models.Playlist
 import com.webhopers.medlog.services.database.RealmDatabaseService
 import com.webhopers.medlog.utils.convertDpToPixels
 import io.realm.RealmList
+import kotlinx.android.synthetic.main.playlist_picker_dialog.*
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
 class RecyclerViewAdapterMR(val view: MedRepMainView,
@@ -73,6 +75,7 @@ class RecyclerViewAdapterMR(val view: MedRepMainView,
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             when (item.itemId) {
                 R.id.action_create_playlist -> PlaylistNameDialog(context, this@RecyclerViewAdapterMR::createPlaylist)
+                R.id.action_add_to_playlist -> showPlaylistPicker()
                 else -> return false
             }
             return true
@@ -111,6 +114,52 @@ class RecyclerViewAdapterMR(val view: MedRepMainView,
         val playlist = Playlist(playlistName, urls)
         RealmDatabaseService.createPlaylist(playlist)
         Toast.makeText(context, "Created", Toast.LENGTH_SHORT).show()
+    }
+
+    fun showPlaylistPicker() {
+
+        val images = ArrayList<Image>()
+        selectedPositions.forEach {
+            val model = itemViews[it].tag as ImageModel
+            images.add(Image(model.url!!))
+        }
+
+        val playlists = RealmDatabaseService.showAllPlaylists()
+        if (playlists.isEmpty()) {
+            view.makeToast("No Playlist")
+            return
+        }
+
+        var selectedVal = -1
+
+        val arr: Array<String?> = Array(playlists.size) {
+            return@Array playlists[it].name
+        }
+
+        val dialog = Dialog(activity)
+        dialog.setTitle("Pick Playlist")
+        dialog.setContentView(R.layout.playlist_picker_dialog)
+
+        val picker = dialog.playlist_picker
+        picker.minValue = 0
+        picker.maxValue = playlists.size - 1
+        picker.wrapSelectorWheel = false
+        picker.displayedValues = arr
+        picker.setOnValueChangedListener { picker, oldVal, newVal -> selectedVal = newVal }
+
+        val selectButton = dialog.select_playlist
+        selectButton.setOnClickListener {
+
+            if (selectedVal == -1) return@setOnClickListener
+            RealmDatabaseService.addToPlaylist(arr[selectedVal]!!, images)
+            dialog.dismiss()
+
+            Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show()
+            actMode?.finish()
+            multiSelector.isSelectable = false
+            selectedPositions.clear()
+        }
+        dialog.show()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolderMR {

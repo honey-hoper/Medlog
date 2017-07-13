@@ -11,4 +11,5 @@ interface MedRepMainView : ViewInterface{
     fun getRecyclerView(): RecyclerView
     fun startIntentActivity(intent: Intent)
     fun makeToast(message: String)
+    fun startManagePlaylistActivity()
 }

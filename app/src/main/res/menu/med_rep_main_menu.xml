@@ -7,8 +7,8 @@
         android:title="@string/open_saved"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/delete_all_playlists"
-        android:title="Delete all Playlists"
+    <item android:id="@+id/manage_playlists"
+        android:title="Manage Playlists"
         app:showAsAction="never"/>
 
     <item android:id="@+id/signout_option_mr"

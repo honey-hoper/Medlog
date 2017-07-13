@@ -14,6 +14,7 @@ import com.webhopers.medlog.adapters.ExpandableListAdapter
 
 import com.webhopers.medlog.R
 import com.webhopers.medlog.adapters.itemDecorator.RecyclerViewDecorator
+import com.webhopers.medlog.managePlaylist.ManagePlaylistActivity
 import com.webhopers.medlog.services.database.RealmDatabaseService
 import com.webhopers.medlog.splash.SplashActivity
 import com.webhopers.medlog.utils.convertDpToPixels
@@ -21,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_med_rep_main.*
 import kotlinx.android.synthetic.main.exp_list_child_item_mr.view.*
 
 class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
-
 
     lateinit var drawerToggle: ActionBarDrawerToggle
     lateinit var progressDialog: ProgressDialog
@@ -59,7 +59,7 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
         when (id) {
             R.id.signout_option_mr -> presenter.signout()
             R.id.saved_option_mr -> presenter.showPlaylistPicker()
-            R.id.delete_all_playlists -> RealmDatabaseService.deleteAll()
+            R.id.manage_playlists -> startManagePlaylistActivity()
         }
 
         return super.onOptionsItemSelected(item)
@@ -134,5 +134,7 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
     override fun startIntentActivity(intent: Intent) = startActivity(intent)
 
     override fun makeToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+    override fun startManagePlaylistActivity() = startActivity(Intent(this, ManagePlaylistActivity::class.java))
 
 }

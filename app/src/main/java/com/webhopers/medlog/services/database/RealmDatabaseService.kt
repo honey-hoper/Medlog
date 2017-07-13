@@ -1,7 +1,9 @@
 package com.webhopers.medlog.services.database
 
+import com.webhopers.medlog.models.Image
 import com.webhopers.medlog.models.Playlist
 import io.realm.Realm
+import io.realm.RealmList
 
 object RealmDatabaseService {
 
@@ -13,16 +15,6 @@ object RealmDatabaseService {
         }
     }
 
-    fun showResult() {
-        realm.where(Playlist::class.java)
-                .findAll()
-                .forEach {
-                    println(it.name)
-                    it.urls?.forEach {
-                        println(it.url)
-                    }
-                }
-    }
 
     fun showAllPlaylists(): List<Playlist> {
         val result = realm.where(Playlist::class.java)
@@ -30,6 +22,19 @@ object RealmDatabaseService {
         return result
     }
 
+    fun addToPlaylist(playlistName: String, images: List<Image>) {
+        val result = realm.where(Playlist::class.java)
+                .equalTo("name", playlistName)
+                .findAll()
+
+        if (result.isEmpty())
+            return
+
+        realm.executeTransaction {
+            result[0].urls?.addAll(images)
+        }
+
+    }
 
     fun deleteAll() {
 

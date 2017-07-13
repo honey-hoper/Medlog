@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_create_playlist"
         android:title="create playlist"
         android:icon="@drawable/ic_action_name"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_add_to_playlist"
+        android:title="Add to Playlist"
+        android:icon="@drawable/add_to"
         app:showAsAction="always"/>
 
 </menu>
