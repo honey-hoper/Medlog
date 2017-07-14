@@ -12,8 +12,11 @@
             android:id="@+id/toolbar_manage_playlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="5dp"
+            android:background="@color/colorPrimary"
             app:title="@string/app_name"
-            app:titleTextColor="@color/colorAccent"/>
+            app:titleTextColor="@color/colorAccent"
+            android:theme="@style/ToolbarIconColor"/>
 
     </android.support.design.widget.AppBarLayout>
 

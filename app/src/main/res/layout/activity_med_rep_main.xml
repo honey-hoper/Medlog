@@ -20,7 +20,8 @@
                 android:elevation="5dp"
                 android:background="@color/colorPrimary"
                 app:title="@string/app_name"
-                app:titleTextColor="@color/colorAccent"/>
+                app:titleTextColor="@color/colorAccent"
+                android:theme="@style/ToolbarIconColor"/>
 
         </android.support.design.widget.AppBarLayout>
 

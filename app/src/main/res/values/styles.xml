@@ -32,4 +32,11 @@
         <item name="android:maxLines">1</item>
     </style>
 
+    <style name="ToolbarIconColor" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@android:color/white</item>
+        <!-- Overflow Menu Color -->
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+    </style>
+
+
 </resources>
