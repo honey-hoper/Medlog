@@ -7,7 +7,7 @@
     <color name="colorAccentDark">#E8F1F5</color>
     <color name="colorAccentDarker">#6F7475</color>
 
-    <color name="colorAccentTransparent">#FAFAFA99</color>
+    <color name="colorPrimaryTransparent">#55005691</color>
 
 
 </resources>
