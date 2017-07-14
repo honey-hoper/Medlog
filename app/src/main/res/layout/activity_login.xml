@@ -26,6 +26,7 @@
                 android:inputType="text"
                 android:maxLength="50"
                 android:hint="@string/enter_email"
+                android:textColor="@color/colorAccent"
                 android:theme="@style/AccentColorEditText"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -44,6 +45,7 @@
                 android:maxLength="50"
                 android:inputType="textPassword"
                 android:hint="@string/enter_password"
+                android:textColor="@color/colorAccent"
                 android:theme="@style/AccentColorEditText"/>
 
         </android.support.design.widget.TextInputLayout>

@@ -20,6 +20,7 @@
             android:inputType="text"
             android:maxLength="50"
             android:hint="@string/enter_name"
+            android:textColor="@color/colorAccent"
             android:theme="@style/AccentColorEditText"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -39,6 +40,7 @@
             android:inputType="text"
             android:maxLength="50"
             android:hint="@string/enter_phone"
+            android:textColor="@color/colorAccent"
             android:theme="@style/AccentColorEditText"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -60,6 +62,7 @@
             android:inputType="textEmailAddress"
             android:maxLength="50"
             android:hint="@string/enter_email"
+            android:textColor="@color/colorAccent"
             android:theme="@style/AccentColorEditText"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -79,6 +82,7 @@
             android:maxLength="50"
             android:inputType="textPassword"
             android:hint="@string/enter_password"
+            android:textColor="@color/colorAccent"
             android:theme="@style/AccentColorEditText"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -98,6 +102,7 @@
             android:maxLength="50"
             android:inputType="textPassword"
             android:hint="@string/confirm_password"
+            android:textColor="@color/colorAccent"
             android:theme="@style/AccentColorEditText"/>
 
     </android.support.design.widget.TextInputLayout>
