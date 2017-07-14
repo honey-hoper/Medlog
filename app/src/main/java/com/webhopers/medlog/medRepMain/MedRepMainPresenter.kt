@@ -7,6 +7,7 @@ import android.content.res.Resources
 import android.net.Uri
 import android.os.Environment
 import android.support.v7.app.AppCompatActivity
+import android.view.Window
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.google.firebase.database.FirebaseDatabase
 import com.stfalcon.frescoimageviewer.ImageViewer
@@ -81,7 +82,7 @@ class MedRepMainPresenter(val view: MedRepMainView,
         }
 
         val dialog = Dialog(activity)
-        dialog.setTitle("Pick Playlist")
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.playlist_picker_dialog)
 
         val picker = dialog.playlist_picker
