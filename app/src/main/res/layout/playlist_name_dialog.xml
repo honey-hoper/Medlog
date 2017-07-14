@@ -3,19 +3,30 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/colorAccent"
     android:padding="16dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/enter_playlist_name"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
 
     <EditText
         android:id="@+id/playlist_name_dialog_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:inputType="text"
+        android:maxLength="20"
+        android:theme="@style/ColoredEditText"/>
+
+    <Button
+        android:id="@+id/playlist_name_dialog_create_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ColoredButton"
+        android:text="@string/create" />
 
 </LinearLayout>

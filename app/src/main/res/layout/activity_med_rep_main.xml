@@ -44,7 +44,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_gravity="start"
-        android:background="#FFFFFF">
+        android:background="@color/colorPrimary">
 
         <ImageView
             android:layout_width="match_parent"
