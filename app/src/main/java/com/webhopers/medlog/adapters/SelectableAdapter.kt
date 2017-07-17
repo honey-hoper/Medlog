@@ -124,8 +124,8 @@ class SelectableAdapter(val view: AdminMainView,
     }
 
     fun moveTo(list: List<String>) {
-        view.setProgressDialogStyle()
-        view.showProgressDialog(true)
+       // view.setProgressDialogStyle()
+       // view.showProgressDialog(true)
 
         list.forEach { path: String ->
             selectedPositions.forEach {

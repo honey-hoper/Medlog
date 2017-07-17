@@ -44,9 +44,33 @@ class FirebaseDatabaseService {
 
 
         fun removeMed(uid: String, path: String) {
-            database.getReference(path)
+//            database.getReference(path)
+//                    .child(uid)
+//                    .removeValue()
+            val list = arrayListOf<String>()
+            database.getReference(images)
                     .child(uid)
-                    .removeValue()
+                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(p0: DataSnapshot?) {
+                            for (x in p0!!.children) {
+                                list.add(x.getValue(String::class.java).toString())
+                            }
+
+                            list.forEach {
+                                database.getReference(it)
+                                        .child(uid)
+                                        .removeValue()
+                            }
+
+                            database.getReference(images)
+                                    .child(uid)
+                                    .removeValue()
+
+                        }
+
+                        override fun onCancelled(p0: DatabaseError?) {}
+                    })
+
         }
 
         fun addUser(mr: MedRepInfo) {
