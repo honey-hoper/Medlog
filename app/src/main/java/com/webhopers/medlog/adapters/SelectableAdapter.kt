@@ -130,7 +130,8 @@ class SelectableAdapter(val view: AdminMainView,
         list.forEach { path: String ->
             selectedPositions.forEach {
                 val url = (itemViews[it].tag as ImageModel).url!!
-                FirebaseDatabaseService.addMed(path, url)
+                val uid = (itemViews[it].tag as ImageModel).uid!!
+                FirebaseDatabaseService.addMed2(uid, url, path)
             }
         }
 

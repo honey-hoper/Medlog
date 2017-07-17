@@ -16,7 +16,7 @@ class FirebaseStorageService {
                 val storageRef = storage.reference.child("$storagePath/${file.lastPathSegment}")
                 storageRef.putFile(file)
                         .addOnSuccessListener { taskSnapshot ->
-                            FirebaseDatabaseService.addMed(storagePath, taskSnapshot.downloadUrl.toString())
+                            FirebaseDatabaseService.createMed(storagePath, taskSnapshot.downloadUrl.toString())
                             e.onComplete()
                         }
                         .addOnFailureListener { exception ->  e.onError(Throwable("Unable to Upload File ${exception.message}")) }

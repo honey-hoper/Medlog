@@ -44,9 +44,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="bottom"
-            android:background="@drawable/accent_btn_selector"
+            android:background="@drawable/btn_selector"
             android:text="@string/upload_new"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorAccent"
             android:visibility="invisible"/>
 
     </android.support.design.widget.CoordinatorLayout>

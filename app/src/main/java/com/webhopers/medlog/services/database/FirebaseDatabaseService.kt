@@ -14,18 +14,34 @@ class FirebaseDatabaseService {
         val database by lazy { FirebaseDatabase.getInstance() }
 
         val users = "users"
+        val images = "images"
 
-        fun addMed(path: String, url: String) {
-            val uid = database.getReference(path)
+        fun createMed(path: String, url: String) {
+            val uid = database.getReference(images)
                     .push()
                     .key
 
+            database.getReference(images)
+                    .child(uid)
+                    .push()
+                    .setValue(path)
+
+            addMed2(uid, url, path)
+
+        }
+
+        fun addMed2(uid: String, url: String, path: String) {
             val imageModel = ImageModel(uid, url)
             database.getReference(path)
                     .child(uid)
                     .setValue(imageModel)
 
+            database.getReference(images)
+                    .child(uid)
+                    .push()
+                    .setValue(path)
         }
+
 
         fun removeMed(uid: String, path: String) {
             database.getReference(path)
@@ -39,41 +55,6 @@ class FirebaseDatabaseService {
                     .setValue(mr)
         }
 
-        fun getAllFromPath(path: String): Single<ArrayList<String?>> {
-            return Single.create<ArrayList<String?>> { e ->
-                database.getReference(path)
-                        .addListenerForSingleValueEvent(object: ValueEventListener {
-                            override fun onCancelled(error: DatabaseError?) {
-                                e.onError(Throwable("Error: ${error?.message}" ))
-                            }
 
-                            override fun onDataChange(snapshot: DataSnapshot?) {
-                                val list = ArrayList<String?>()
-                                for (x in snapshot!!.children)
-                                    list.add(x.getValue(ImageModel::class.java)?.url)
-                                e.onSuccess(list)
-                            }
-                        })
-            }
-        }
-
-        fun getAllFromPath2(path: String): Single<ArrayList<String>> {
-            return Single.create<ArrayList<String>> { e ->
-                database.getReference(path)
-                        .addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onCancelled(error: DatabaseError?) {
-                                e.onError(Throwable("Error: ${error?.message}" ))
-                            }
-
-                            override fun onDataChange(snapshot: DataSnapshot?) {
-                                val list: ArrayList<String> = ArrayList<String>()
-                                for (x in snapshot!!.children)
-                                    list.add(x.getValue(ImageModel::class.java)!!.url!!)
-                                e.onSuccess(list)
-                            }
-
-                        })
-            }
-        }
     }
 }
