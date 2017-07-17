@@ -1,11 +1,13 @@
 package com.webhopers.medlog.adapters
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.res.Resources
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
 import android.util.SparseArray
 import android.view.*
+import android.widget.Toast
 import com.bignerdranch.android.multiselector.ModalMultiSelectorCallback
 import com.bignerdranch.android.multiselector.MultiSelector
 import com.bignerdranch.android.multiselector.SwappingHolder
@@ -17,6 +19,7 @@ import com.stfalcon.frescoimageviewer.ImageViewer
 import com.webhopers.medlog.R
 import com.webhopers.medlog.adminMain.AdminMainView
 import com.webhopers.medlog.dataHolder.DataHolder
+import com.webhopers.medlog.dialogs.SelectCategoryDialog
 import com.webhopers.medlog.extensions.inflateView
 import com.webhopers.medlog.models.ImageModel
 import com.webhopers.medlog.services.database.FirebaseDatabaseService
@@ -70,6 +73,7 @@ class SelectableAdapter(val view: AdminMainView,
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             when (item.itemId) {
                 R.id.action_delete -> deleteItems()
+                R.id.move_to -> SelectCategoryDialog(context, this@SelectableAdapter::moveTo)
                 else -> return false
             }
             return true
@@ -117,6 +121,21 @@ class SelectableAdapter(val view: AdminMainView,
             selectedPositions.clear()
         }
 
+    }
+
+    fun moveTo(list: List<String>) {
+        view.setProgressDialogStyle()
+        view.showProgressDialog(true)
+
+        list.forEach { path: String ->
+            selectedPositions.forEach {
+                val url = (itemViews[it].tag as ImageModel).url!!
+                FirebaseDatabaseService.addMed(path, url)
+            }
+        }
+
+        view.showProgressDialog(false)
+        Toast.makeText(context, "Moved", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {

@@ -11,8 +11,6 @@ class PlaylistNameDialog(context: Context, callback: (String) -> Unit) {
     init {
         AlertDialog.Builder(context)
                 .setView(context.inflateView(R.layout.playlist_name_dialog))
-               // .setPositiveButton(R.string.create, null)
-                //.setNegativeButton(R.string.cancel, null)
                 .create()
                 .apply {
                     show()

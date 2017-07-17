@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:title="Move to"
+        android:icon="@drawable/move_to"
+        android:id="@+id/move_to"/>
+
+    <item
         android:title="Delete"
         android:icon="@drawable/delete_icon"
         android:id="@+id/action_delete"/>
