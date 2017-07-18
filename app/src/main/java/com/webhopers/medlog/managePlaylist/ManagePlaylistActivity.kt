@@ -2,7 +2,11 @@ package com.webhopers.medlog.managePlaylist
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.Menu
 import android.view.MenuItem
 
@@ -28,7 +32,17 @@ class ManagePlaylistActivity :
         presenter = ManagePlaylistPresenter(this)
         setSupportActionBar(toolbar_manage_playlist)
 
-        manage_playlist_recycler_view.adapter = ListAdapter(presenter.getPlaylists())
+
+        val adapter = ListAdapter(presenter.getPlaylists())
+        manage_playlist_recycler_view.adapter = adapter
+
+        val itemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
+        itemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider))
+        manage_playlist_recycler_view.addItemDecoration(itemDecoration)
+
+        val touchHelper = ItemTouchHelper(adapter.itemTouchCallback)
+        touchHelper.attachToRecyclerView(manage_playlist_recycler_view)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

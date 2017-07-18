@@ -24,6 +24,8 @@
         android:id="@+id/manage_playlist_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>

@@ -75,7 +75,7 @@ class MedRepMainPresenter(val view: MedRepMainView,
             return
         }
 
-        var selectedVal = -1
+        var selectedVal = 0
 
         val arr: Array<String?> = Array(playlists.size) {
             return@Array playlists[it].name
@@ -94,8 +94,6 @@ class MedRepMainPresenter(val view: MedRepMainView,
 
         val selectButton = dialog.select_playlist
         selectButton.setOnClickListener {
-
-            if (selectedVal == -1) return@setOnClickListener
 
             val urls = playlists[selectedVal].urls?.map { it.url }
 

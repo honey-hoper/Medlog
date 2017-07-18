@@ -43,5 +43,17 @@ object RealmDatabaseService {
         }
     }
 
+    fun deletePlaylist(playlistName: String) {
+        val result = realm.where(Playlist::class.java)
+                .equalTo("name", playlistName)
+                .findFirst()
+
+        if (result != null) {
+            realm.executeTransaction {
+                result.deleteFromRealm()
+            }
+        }
+    }
+
 
 }

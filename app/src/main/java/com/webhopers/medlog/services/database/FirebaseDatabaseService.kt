@@ -44,9 +44,6 @@ class FirebaseDatabaseService {
 
 
         fun removeMed(uid: String, path: String) {
-//            database.getReference(path)
-//                    .child(uid)
-//                    .removeValue()
             val list = arrayListOf<String>()
             database.getReference(images)
                     .child(uid)
