@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/primary_color_background"
         android:layout_centerInParent="true">
 
         <android.support.design.widget.TextInputLayout
@@ -17,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:textColorHint="@color/colorAccent">
+            android:theme="@style/ColoredEditText">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/email_field"
@@ -26,8 +28,7 @@
                 android:inputType="text"
                 android:maxLength="50"
                 android:hint="@string/enter_email"
-                android:textColor="@color/colorAccent"
-                android:theme="@style/AccentColorEditText"/>
+                android:textColor="@color/colorPrimary" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -36,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:textColorHint="@color/colorAccent">
+            android:theme="@style/ColoredEditText">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/password_field"
@@ -45,8 +46,7 @@
                 android:maxLength="50"
                 android:inputType="textPassword"
                 android:hint="@string/enter_password"
-                android:textColor="@color/colorAccent"
-                android:theme="@style/AccentColorEditText"/>
+                android:textColor="@color/colorPrimary"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="8dp"
-            android:theme="@style/AccentColorButton"
+            android:theme="@style/ColoredButton"
             android:text="@string/login"
             />
 
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"
-            android:theme="@style/AccentColorButton"
+            android:theme="@style/ColoredButton"
             android:text="@string/create_acc"
             />
 

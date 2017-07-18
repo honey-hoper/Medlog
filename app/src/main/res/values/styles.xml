@@ -16,6 +16,14 @@
         <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
 
+    <style name="AccentBackGround" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowBackground">@drawable/bg</item>
+    </style>
+
     <style name="Splash" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/medlog_splash</item>
     </style>
@@ -23,6 +31,9 @@
     <style name="ColoredButton" parent="Base.Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/colorPrimary</item>
         <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
+
     </style>
 
     <style name="AccentColorButton" parent="Base.Widget.AppCompat.Button.Colored">
@@ -40,9 +51,10 @@
     </style>
 
 
-    <style name="ColoredEditText" parent="Base.Widget.AppCompat.EditText">
+    <style name="ColoredEditText" parent="TextAppearance.AppCompat">
+        <item name="android:textColorHint">@color/colorPrimary</item>
         <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="android:textSize">14sp</item>
         <item name="android:maxLines">1</item>
     </style>
