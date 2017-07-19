@@ -24,7 +24,7 @@
         <item name="android:windowBackground">@drawable/bg</item>
     </style>
 
-    <style name="Splash" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Splash" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/medlog_splash</item>
     </style>
     
