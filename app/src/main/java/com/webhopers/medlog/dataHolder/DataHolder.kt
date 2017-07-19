@@ -40,18 +40,18 @@ object DataHolder: ValueEventListener{
     }
 
     override fun onDataChange(snapshot: DataSnapshot?) {
-        urls = null
         val temp = ArrayList<String>()
 
+        urls = null
+        view?.showProgressBar(false)
+
         if (!snapshot!!.hasChildren()) {
-            view?.showProgressBar(false)
             view?.getRootLayout()?.background = ContextCompat.getDrawable(view?.getContext(), R.drawable.sorry_nothing_here_drawable)
             return
-        }
+        } else view?.getRootLayout()?.background = null
 
-        for (x in snapshot!!.children) {
-            temp.add(x.getValue(ImageModel::class.java)!!.url!!)
-        }
+
+        for (x in snapshot!!.children) temp.add(x.getValue(ImageModel::class.java)!!.url!!)
         urls = temp
     }
 
