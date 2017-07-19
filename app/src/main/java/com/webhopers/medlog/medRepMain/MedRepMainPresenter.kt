@@ -50,6 +50,7 @@ class MedRepMainPresenter(val view: MedRepMainView,
 
         val adapter = RecyclerViewAdapterMR(view, context, activity, resources, ref)
         view.getRecyclerView().adapter = adapter
+        view.getRootLayout().background = null
 
     }
 

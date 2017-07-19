@@ -1,6 +1,7 @@
 package com.webhopers.medlog.adminMain
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -21,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_admin_main.*
 import kotlinx.android.synthetic.main.exp_list_child_item_mr.view.*
 
 class AdminMainActivity : AdminMainView, AppCompatActivity() {
-
 
     lateinit var drawerToggle: ActionBarDrawerToggle
     lateinit var progressDialog: ProgressDialog
@@ -151,5 +151,9 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
     override fun showProgressBar(bool: Boolean) {
         progress_bar_admin.visibility = if (bool) View.VISIBLE else View.GONE
     }
+
+    override fun getRootLayout() = admin_root
+
+    override fun getContext() = this
 
 }

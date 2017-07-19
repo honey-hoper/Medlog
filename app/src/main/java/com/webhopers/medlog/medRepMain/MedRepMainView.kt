@@ -3,6 +3,7 @@ package com.webhopers.medlog.medRepMain
 import android.content.Intent
 import android.content.res.Resources
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.webhopers.medlog.interfaces.ViewInterface
 
 interface MedRepMainView : ViewInterface{

@@ -1,6 +1,7 @@
 package com.webhopers.medlog.medRepMain
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_med_rep_main.*
 import kotlinx.android.synthetic.main.exp_list_child_item_mr.view.*
 
 class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
+
 
     lateinit var drawerToggle: ActionBarDrawerToggle
     lateinit var progressDialog: ProgressDialog
@@ -136,5 +138,9 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
     override fun makeToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
     override fun startManagePlaylistActivity() = startActivity(Intent(this, ManagePlaylistActivity::class.java))
+
+    override fun getRootLayout() = med_rep_root
+
+    override fun getContext() = this
 
 }

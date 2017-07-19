@@ -45,6 +45,7 @@ class AdminMainPresenter(val context: Context,
 
         val adapter = SelectableAdapter(view, context, activity, resources, path, ref)
         view.getRecyclerView().adapter = adapter
+        view.getRootLayout().background = null
 
     }
 
