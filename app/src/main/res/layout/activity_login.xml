@@ -64,10 +64,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:theme="@style/ColoredButton"
             android:text="@string/create_acc"
             />
+
+        <TextView
+            android:id="@+id/invalid_login_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/invalid_login"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
 
         <ProgressBar
             android:id="@+id/progress_bar_login"

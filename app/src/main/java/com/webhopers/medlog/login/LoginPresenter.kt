@@ -24,6 +24,7 @@ class LoginPresenter(val view: LoginView,
 
         view.showProgressBar(true)
         view.enableButtons(false)
+        view.showInvalidLoginView(false)
 
         val email = view.getEmailField().text.toString()
         val password = view.getPasswordField().text.toString()
@@ -62,6 +63,7 @@ class LoginPresenter(val view: LoginView,
                         onError = {
                             view.enableButtons(true)
                             view.showProgressBar(false)
+                            view.showInvalidLoginView(true)
                         }))
     }
 

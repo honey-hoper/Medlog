@@ -18,6 +18,7 @@
     <!-- Login Activity -->
     <string name="login">Login</string>
     <string name="create_acc">Create Account</string>
+    <string name="invalid_login">Invalid Username or Password</string>
     <!-- Login Activity -->
 
     <!-- MedRepMainActivity -->

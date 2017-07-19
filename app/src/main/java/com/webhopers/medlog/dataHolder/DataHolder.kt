@@ -1,7 +1,6 @@
 package com.webhopers.medlog.dataHolder
 
 import android.support.v4.content.ContextCompat
-import android.widget.ProgressBar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

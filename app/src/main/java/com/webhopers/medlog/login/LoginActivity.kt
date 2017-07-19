@@ -65,4 +65,9 @@ class LoginActivity : LoginView, AppCompatActivity() {
         finish()
     }
 
+    override fun showInvalidLoginView(bool: Boolean) {
+        if (bool) invalid_login_text_view.visibility = View.VISIBLE
+        else invalid_login_text_view.visibility = View.GONE
+    }
+
 }

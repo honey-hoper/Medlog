@@ -14,4 +14,5 @@ interface LoginView {
     fun enableButtons(bool: Boolean)
     fun startMedRepActivity()
     fun startAdminMainActivity()
+    fun showInvalidLoginView(bool: Boolean)
 }
