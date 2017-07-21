@@ -55,7 +55,7 @@
             android:layout_height="160dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/medlog_nav"/>
+            android:src="@drawable/medlog_banner"/>
 
         <ExpandableListView
             android:id="@+id/exp_list_view_mr"
