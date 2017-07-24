@@ -137,7 +137,7 @@ class RecyclerViewAdapterMR(val view: MedRepMainView,
         }
 
         val dialog = Dialog(activity)
-        dialog.setTitle("Pick Playlist")
+        dialog.setTitle("Add to")
         dialog.setContentView(R.layout.playlist_picker_dialog)
 
         val picker = dialog.playlist_picker

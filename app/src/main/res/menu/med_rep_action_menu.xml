@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_create_playlist"
         android:title="create playlist"
-        android:icon="@drawable/ic_action_name"
+        android:icon="@drawable/create_new"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:showAsAction="always"/>
 
