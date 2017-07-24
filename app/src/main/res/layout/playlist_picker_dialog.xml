@@ -10,7 +10,8 @@
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:descendantFocusability="blocksDescendants"/>
 
     <Button
         android:id="@+id/select_playlist"
