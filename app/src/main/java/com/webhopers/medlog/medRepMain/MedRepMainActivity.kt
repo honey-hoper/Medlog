@@ -1,7 +1,6 @@
 package com.webhopers.medlog.medRepMain
 
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -16,7 +15,6 @@ import com.webhopers.medlog.adapters.ExpandableListAdapter
 import com.webhopers.medlog.R
 import com.webhopers.medlog.adapters.itemDecorator.RecyclerViewDecorator
 import com.webhopers.medlog.managePlaylist.ManagePlaylistActivity
-import com.webhopers.medlog.services.database.RealmDatabaseService
 import com.webhopers.medlog.splash.SplashActivity
 import com.webhopers.medlog.utils.convertDpToPixels
 import kotlinx.android.synthetic.main.activity_med_rep_main.*

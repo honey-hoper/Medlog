@@ -26,9 +26,7 @@
         <activity
             android:name=".medRepMain.MedRepMainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-
+            android:theme="@style/AppTheme2">
 
         </activity>
         <activity
@@ -46,7 +44,7 @@
         <activity
             android:name=".adminMain.AdminMainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/AppTheme2">
 
 
 
