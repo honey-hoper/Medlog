@@ -22,15 +22,18 @@ class AdminMainPresenter(val context: Context,
                          val resources: Resources,
                          val disposable: CompositeDisposable = CompositeDisposable()) {
 
+
+    private val SESSION_FILE = "SESSION_FILE"
+    private val ADMIN_SESSION = "ADMIN_SESSION"
+
     init {
         DataHolder.changeView(view)
     }
 
     fun signout() {
-        view.showProgressDialog(true)
-        view.setProgressDialogStyle()
-        FirebaseAuthService.signOutUser()
-        view.showProgressDialog(false)
+        val sessionFile = context.getSharedPreferences(SESSION_FILE, Context.MODE_PRIVATE)
+        val sessionFileEditor = sessionFile.edit()
+        sessionFileEditor.putBoolean(ADMIN_SESSION, false).apply()
         view.startSplashActivity()
     }
 

@@ -1,5 +1,6 @@
 package com.webhopers.medlog.login
 
+import android.content.Context
 import android.content.res.Resources
 import com.webhopers.medlog.R
 import com.webhopers.medlog.extensions.isEmpty
@@ -11,8 +12,12 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
 class LoginPresenter(val view: LoginView,
+                     val context: Context,
                      val resources: Resources,
                      val disposable: CompositeDisposable = CompositeDisposable()) {
+
+    private val SESSION_FILE = "SESSION_FILE"
+    private val ADMIN_SESSION = "ADMIN_SESSION"
 
     fun onLogin() {
         if (!validInput()) return
@@ -29,13 +34,12 @@ class LoginPresenter(val view: LoginView,
         val email = view.getEmailField().text.toString()
         val password = view.getPasswordField().text.toString()
 
-        if (email ==  resources.getString(R.string.admin)
-                && password == resources.getString(R.string.pass)) {
+        if (email ==  resources.getString(R.string.admin) && password == resources.getString(R.string.pass)) {
+            val sessionFile = context.getSharedPreferences(SESSION_FILE, Context.MODE_PRIVATE)
+            val sessionFileEditor = sessionFile.edit()
+            sessionFileEditor.putBoolean(ADMIN_SESSION, true).apply()
             view.startAdminMainActivity()
-            return
-        }
-
-        signInUser(email, password)
+        } else signInUser(email, password)
     }
 
     private fun validInput(): Boolean {

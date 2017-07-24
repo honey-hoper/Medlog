@@ -70,22 +70,30 @@
 
     <!--Product For-->
     <string-array name="product_for">
-        <item>Alkalizer</item>
         <item>Analgesic</item>
-        <item>Anti-Allergic</item>
-        <item>Anti-Biotic</item>
-        <item>Anti-Cold</item>
-        <item>Anti-Cough</item>
-        <item>Anti-Fungal</item>
-        <item>Anti-Gout</item>
-        <item>Anti-Helmentic</item>
-        <item>Anti-Hypertensive</item>
-        <item>Anti-Infective</item>
-        <item>Anti-Inflammatory</item>
-        <item>Anti-Malarial</item>
-        <item>Anti-Migraine</item>
-        <item>Calotrac Tablets</item>
-        <item>Anti-Oxidant</item>
+        <item>Anti Allergic</item>
+        <item>Anti Biotic</item>
+        <item>Anti Cold</item>
+        <item>Anti Cough</item>
+        <item>Anti Fungal</item>
+        <item>Anti Hypertensive</item>
+        <item>Anti Malarials</item>
+        <item>Anti Pyretic</item>
+        <item>Anti Spasmodic</item>
+        <item>BPH</item>
+        <item>Cognition</item>
+        <item>Fever</item>
+        <item>Gynaecology</item>
+        <item>Hepatology</item>
+        <item>Hypersensitivity</item>
+        <item>Muscle Relaxant</item>
+        <item>Neurology</item>
+        <item>Nutrients/Vitamins</item>
+        <item>Oral Thrush</item>
+        <item>Steroid</item>
+        <item>Toothpaste</item>
+        <item>Vasodilator</item>
+
     </string-array>
     <!--Product For-->
 

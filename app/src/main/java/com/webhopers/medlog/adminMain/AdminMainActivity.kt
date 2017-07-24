@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -30,6 +31,7 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
 
     lateinit var path: String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_main)
@@ -52,9 +54,18 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.admin_main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (drawerToggle.onOptionsItemSelected(item)) return true
+        val id = item?.itemId
+        when (id) {
+            R.id.admin_action_signout -> presenter.signout()
+        }
+
         return super.onOptionsItemSelected(item)
     }
 

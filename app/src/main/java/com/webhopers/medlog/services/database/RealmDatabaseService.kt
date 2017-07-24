@@ -9,6 +9,7 @@ object RealmDatabaseService {
 
     val realm by lazy { Realm.getDefaultInstance() }
 
+
     fun createPlaylist(playlist: Playlist) {
         realm.executeTransaction { realm ->
             realm.copyToRealm(playlist)

@@ -20,7 +20,7 @@ class LoginActivity : LoginView, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        presenter = LoginPresenter(this, resources)
+        presenter = LoginPresenter(this, this, resources)
 
         login_button.setOnClickListener { presenter.onLogin() }
         create_acc_button.setOnClickListener { presenter.createUserAccount() }
