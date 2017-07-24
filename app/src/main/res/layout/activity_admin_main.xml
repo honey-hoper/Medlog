@@ -24,7 +24,8 @@
                 app:title="@string/app_name"
                 app:titleTextColor="@color/colorAccent"
                 app:subtitle="Admin"
-                app:subtitleTextColor="@color/colorAccentDark" />
+                app:subtitleTextColor="@color/colorAccentDark"
+                android:theme="@style/ToolbarIconColor"/>
 
         </android.support.design.widget.AppBarLayout>
 

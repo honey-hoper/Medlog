@@ -130,7 +130,7 @@ class RecyclerViewAdapterMR(val view: MedRepMainView,
             return
         }
 
-        var selectedVal = -1
+        var selectedVal = 0
 
         val arr: Array<String?> = Array(playlists.size) {
             return@Array playlists[it].name
@@ -150,7 +150,6 @@ class RecyclerViewAdapterMR(val view: MedRepMainView,
         val selectButton = dialog.select_playlist
         selectButton.setOnClickListener {
 
-            if (selectedVal == -1) return@setOnClickListener
             RealmDatabaseService.addToPlaylist(arr[selectedVal]!!, images)
             dialog.dismiss()
 
