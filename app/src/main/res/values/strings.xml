@@ -31,6 +31,13 @@
     <string name="upload_new">Upload New</string>
     <!-- AdminMainActivity -->
 
+    <!-- AccountCreationCodeActivity -->
+    <string name="acc_crtn_code">Account Creation Code:</string>
+    <string name="reset_acc">Reset ACC</string>
+    <string name="enter_new_code">Enter new code</string>
+    <string name="reset">Reset</string>
+    <!-- AccountCreationCodeActivity -->
+
     <!-- Errors -->
     <string name="no_internet">Not Connected</string>
     <!-- Errors -->

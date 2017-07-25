@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/acc_crtn_code"/>
+
+        <TextView
+            android:id="@+id/acc_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/acc_p_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:theme="@style/ColoredEditText">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/acc_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="4"
+                android:inputType="number"
+                android:hint="@string/enter_new_code"
+                android:textColor="@color/colorPrimary"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/acc_reset_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reset"
+            android:theme="@style/ColoredButton"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

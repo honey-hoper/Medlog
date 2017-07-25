@@ -63,7 +63,7 @@
     </style>
 
 
-    <style name="ColoredEditText" parent="TextAppearance.AppCompat">
+    <style name="ColoredEditText" parent="AppTheme">
         <item name="android:textColorHint">@color/colorPrimary</item>
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimary</item>

@@ -6,6 +6,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.webhopers.medlog.models.ImageModel
 import com.webhopers.medlog.models.MedRepInfo
+import io.reactivex.Observable
 import io.reactivex.Single
 
 class FirebaseDatabaseService {
@@ -15,6 +16,7 @@ class FirebaseDatabaseService {
 
         val users = "users"
         val images = "images"
+        val ACC = "ACC"
 
         fun createMed(path: String, url: String) {
             val uid = database.getReference(images)
@@ -74,6 +76,29 @@ class FirebaseDatabaseService {
             database.getReference(users)
                     .child(mr.uid)
                     .setValue(mr)
+        }
+
+        fun resetACC(code: Int) {
+            database.getReference(ACC)
+                    .setValue(code)
+        }
+
+        fun getACC(): Observable<Int> {
+            return Observable.create<Int> { e ->
+                database.getReference(ACC)
+                        .addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(p0: DatabaseError?) {
+                                e.onError(Throwable("Cancelled"))
+                                e.onComplete()
+                            }
+
+                            override fun onDataChange(p0: DataSnapshot?) {
+                                e.onNext(p0?.getValue(Int::class.java)!!)
+                            }
+
+                        })
+            }
+
         }
 
 

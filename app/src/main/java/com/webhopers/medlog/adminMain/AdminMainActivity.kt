@@ -15,6 +15,7 @@ import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 
 import com.webhopers.medlog.R
+import com.webhopers.medlog.accountCreationCode.AccountCreationCodeActivity
 import com.webhopers.medlog.adapters.ExpandableListAdapter
 import com.webhopers.medlog.adapters.itemDecorator.RecyclerViewDecorator
 import com.webhopers.medlog.splash.SplashActivity
@@ -67,6 +68,7 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
         val id = item?.itemId
         when (id) {
             R.id.admin_action_signout -> presenter.signout()
+            R.id.admin_action_reset_acc -> startACCActivity()
         }
 
         return super.onOptionsItemSelected(item)
@@ -90,6 +92,10 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
                 presenter.upload(result.uri, path)
             }
         }
+    }
+
+    fun startACCActivity() {
+        startActivity(Intent(this, AccountCreationCodeActivity::class.java))
     }
 
     //UI element creation
