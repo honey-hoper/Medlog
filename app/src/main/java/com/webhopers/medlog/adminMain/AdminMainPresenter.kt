@@ -5,8 +5,10 @@ import android.content.Context
 import android.content.res.Resources
 import android.net.Uri
 import android.provider.ContactsContract
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
+import com.webhopers.medlog.R
 import com.webhopers.medlog.adapters.SelectableAdapter
 import com.webhopers.medlog.dataHolder.DataHolder
 import com.webhopers.medlog.services.auth.FirebaseAuthService
@@ -48,7 +50,7 @@ class AdminMainPresenter(val context: Context,
 
         val adapter = SelectableAdapter(view, context, activity, resources, path, ref)
         view.getRecyclerView().adapter = adapter
-        view.getRootLayout().background = null
+        view.getDecorView().background = ContextCompat.getDrawable(context, R.color.colorAccent)
 
     }
 

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
 import android.os.Environment
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -50,7 +51,7 @@ class MedRepMainPresenter(val view: MedRepMainView,
 
         val adapter = RecyclerViewAdapterMR(view, context, activity, resources, ref)
         view.getRecyclerView().adapter = adapter
-        view.getRootLayout().background = null
+        view.getDecorView().background = ContextCompat.getDrawable(context, R.color.colorAccent)
 
     }
 

@@ -7,4 +7,5 @@ interface ViewInterface {
     fun showProgressBar(bool: Boolean)
     fun getRootLayout(): View
     fun getContext(): Context
+    fun getDecorView(): View
 }

@@ -45,9 +45,9 @@ object DataHolder: ValueEventListener{
         view?.showProgressBar(false)
 
         if (!snapshot!!.hasChildren()) {
-            view?.getRootLayout()?.background = ContextCompat.getDrawable(view?.getContext(), R.drawable.sorry_nothing_here_drawable)
+            view?.getDecorView()?.background = ContextCompat.getDrawable(view?.getContext(), R.drawable.sorry_nothing_here_drawable)
             return
-        } else view?.getRootLayout()?.background = null
+        } else view?.getDecorView()?.background = ContextCompat.getDrawable(view?.getContext(), R.color.colorAccent)
 
 
         for (x in snapshot!!.children) temp.add(x.getValue(ImageModel::class.java)!!.url!!)

@@ -8,8 +8,7 @@
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/admin_root"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/select_category_drawable">
+        android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -28,6 +27,7 @@
                 android:theme="@style/ToolbarIconColor"/>
 
         </android.support.design.widget.AppBarLayout>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_admin"

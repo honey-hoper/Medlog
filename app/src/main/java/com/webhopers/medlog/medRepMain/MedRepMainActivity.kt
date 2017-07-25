@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
@@ -22,7 +23,6 @@ import kotlinx.android.synthetic.main.exp_list_child_item_mr.view.*
 
 class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
 
-
     lateinit var drawerToggle: ActionBarDrawerToggle
     lateinit var progressDialog: ProgressDialog
 
@@ -32,6 +32,8 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_rep_main)
+
+        window.decorView.background = ContextCompat.getDrawable(this, R.drawable.select_category_drawable)
 
         presenter = MedRepMainPresenter(this, this, this, resources)
 
@@ -140,5 +142,7 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
     override fun getRootLayout() = med_rep_root
 
     override fun getContext() = this
+
+    override fun getDecorView() = window.decorView
 
 }
