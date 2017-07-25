@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.View
+import android.widget.EditText
 import com.webhopers.medlog.R
 import com.webhopers.medlog.medRepMain.MedRepMainActivity
 import kotlinx.android.synthetic.main.activity_register.*
@@ -39,6 +40,8 @@ class RegisterActivity : RegisterView, AppCompatActivity() {
     override fun getPasswordField() = password_field
 
     override fun getConfirmPasswordField() = confirm_password_field
+
+    override fun getACCField() = acc_field
 
     override fun showSnackbar(id: Int) = Snackbar.make(register_root_layout, id, Snackbar.LENGTH_SHORT).show()
 

@@ -11,6 +11,7 @@ interface RegisterView {
     fun getEmailField(): EditText
     fun getPasswordField(): EditText
     fun getConfirmPasswordField(): EditText
+    fun getACCField(): EditText
     fun showSnackbar(id: Int)
     fun showProgressBar(bool: Boolean)
     fun enableButton(bool: Boolean)

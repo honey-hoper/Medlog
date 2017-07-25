@@ -1,5 +1,6 @@
 package com.webhopers.medlog.register
 
+import android.widget.Toast
 import com.webhopers.medlog.R
 import com.webhopers.medlog.extensions.isEmpty
 import com.webhopers.medlog.models.MedRepInfo
@@ -15,6 +16,21 @@ import java.util.regex.Pattern
 class RegisterPresenter(val view: RegisterView,
                         val disposable: CompositeDisposable = CompositeDisposable()) {
 
+    var ACC: Int? = null
+
+    init {
+        getACC()
+    }
+
+    fun getACC() {
+        disposable.add(FirebaseDatabaseService.getACC()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(onError = {},
+                        onComplete = {},
+                        onNext = {ACC = it}))
+    }
+
     fun onRegister() {
         if (!validInput()) return
 
@@ -23,11 +39,22 @@ class RegisterPresenter(val view: RegisterView,
             return
         }
 
-        val name = view.getNameField().text.toString()
-        val email = view.getEmailField().text.toString()
-        val phone = view.getPhoneField().text.toString()
+        val name = view.getNameField().text.toString().trim()
+        val email = view.getEmailField().text.toString().trim()
+        val phone = view.getPhoneField().text.toString().trim()
         val uid = ""
-        val password = view.getPasswordField().text.toString()
+        val password = view.getPasswordField().text.toString().trim()
+        val acc = view.getACCField().text.toString().trim().toInt()
+
+        if (ACC == null) {
+            Toast.makeText(view.getContext(), "Network Error", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (acc != ACC) {
+            view.getACCField().error = "Wrong ACC"
+            return
+        }
 
         val mr = MedRepInfo(uid, name, phone, email)
 
@@ -67,6 +94,11 @@ class RegisterPresenter(val view: RegisterView,
             return false
         }
 
+        if (view.getACCField().isEmpty()) {
+            view.getACCField().error = "Empty"
+            return false
+        }
+
         if (view.getPhoneField().text.toString().length != 10) {
             view.getPhoneField().error = "Enter correct Phone number"
             return false
@@ -81,7 +113,7 @@ class RegisterPresenter(val view: RegisterView,
             view.getConfirmPasswordField().error = "Password does not match"
             return false
         }
-        return true;
+        return true
     }
 
     private fun isEmailFormatCorrect(): Boolean {

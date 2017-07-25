@@ -12,6 +12,7 @@
     <string name="enter_email">Enter Email</string>
     <string name="enter_password">Enter Password</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="enter_acc">Enter ACC</string>
     <string name="register">Register</string>
     <!-- Register Activity-->
 

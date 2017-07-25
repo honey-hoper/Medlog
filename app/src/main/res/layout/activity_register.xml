@@ -92,7 +92,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/password_input"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:textColorHint="@color/colorAccent">
 
         <android.support.design.widget.TextInputEditText
@@ -107,12 +107,32 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/acc_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_password_input"
+        android:layout_marginBottom="32dp"
+        android:textColorHint="@color/colorAccent">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/acc_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="4"
+            android:inputType="number"
+            android:hint="@string/enter_acc"
+            android:textColor="@color/colorAccent"
+            android:theme="@style/AccentColorEditText"/>
+
+    </android.support.design.widget.TextInputLayout>
+
 
     <ProgressBar
         android:id="@+id/progress_bar_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/confirm_password_input"
+        android:layout_below="@id/acc_input"
         android:layout_centerInParent="true"
         android:visibility="invisible"/>
 

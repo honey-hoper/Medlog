@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.EditText
 
 fun EditText.isEmpty(): Boolean {
-    return text.toString().isEmpty()
+    return text.toString().trim().isEmpty()
 }
 
 fun Context.inflateView(id: Int): View {
