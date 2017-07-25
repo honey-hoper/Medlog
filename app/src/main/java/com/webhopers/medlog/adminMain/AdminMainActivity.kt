@@ -1,7 +1,6 @@
 package com.webhopers.medlog.adminMain
 
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -38,7 +37,7 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_main)
 
-        window.decorView.background = ContextCompat.getDrawable(this, R.drawable.select_category_drawable)
+        window.decorView.background = ContextCompat.getDrawable(this, R.drawable.select_category_drawable2)
 
         presenter = AdminMainPresenter(this, this, this, resources)
 

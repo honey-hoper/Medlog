@@ -45,7 +45,7 @@ object DataHolder: ValueEventListener{
         view?.showProgressBar(false)
 
         if (!snapshot!!.hasChildren()) {
-            view?.getDecorView()?.background = ContextCompat.getDrawable(view?.getContext(), R.drawable.sorry_nothing_here_drawable)
+            view?.getDecorView()?.background = ContextCompat.getDrawable(view?.getContext(), R.drawable.sorry_nothing_here_drawable2)
             return
         } else view?.getDecorView()?.background = ContextCompat.getDrawable(view?.getContext(), R.color.colorAccent)
 

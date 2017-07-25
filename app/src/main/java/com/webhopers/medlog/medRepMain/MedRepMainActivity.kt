@@ -33,7 +33,7 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_rep_main)
 
-        window.decorView.background = ContextCompat.getDrawable(this, R.drawable.select_category_drawable)
+        window.decorView.background = ContextCompat.getDrawable(this, R.drawable.select_category_drawable2)
 
         presenter = MedRepMainPresenter(this, this, this, resources)
 
