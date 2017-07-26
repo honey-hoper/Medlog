@@ -1,6 +1,6 @@
 package com.webhopers.medlog.models
 
-data class MedRepInfo(var uid: String?,
-                      val name: String,
-                      val phone: String,
-                      val email: String)
+data class MedRepInfo(var uid: String? = "",
+                      var name: String = "",
+                      var phone: String = "",
+                      var email: String = "")

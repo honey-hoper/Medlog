@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.View
-import android.widget.EditText
 import com.webhopers.medlog.R
 import com.webhopers.medlog.medRepMain.MedRepMainActivity
 import kotlinx.android.synthetic.main.activity_register.*

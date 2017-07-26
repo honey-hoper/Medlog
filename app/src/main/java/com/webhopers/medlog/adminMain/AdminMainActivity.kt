@@ -18,6 +18,7 @@ import com.webhopers.medlog.R
 import com.webhopers.medlog.accountCreationCode.AccountCreationCodeActivity
 import com.webhopers.medlog.adapters.ExpandableListAdapter
 import com.webhopers.medlog.adapters.itemDecorator.RecyclerViewDecorator
+import com.webhopers.medlog.manageUser.ManageUserActivity
 import com.webhopers.medlog.splash.SplashActivity
 import com.webhopers.medlog.utils.convertDpToPixels
 import kotlinx.android.synthetic.main.activity_admin_main.*
@@ -69,6 +70,7 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
         when (id) {
             R.id.admin_action_signout -> presenter.signout()
             R.id.admin_action_reset_acc -> startACCActivity()
+            R.id.admin_action_mng_user -> startManageUserActivity()
         }
 
         return super.onOptionsItemSelected(item)
@@ -94,9 +96,9 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
         }
     }
 
-    fun startACCActivity() {
-        startActivity(Intent(this, AccountCreationCodeActivity::class.java))
-    }
+    fun startACCActivity() = startActivity(Intent(this, AccountCreationCodeActivity::class.java))
+
+    fun startManageUserActivity() = startActivity(Intent(this, ManageUserActivity::class.java))
 
     //UI element creation
 

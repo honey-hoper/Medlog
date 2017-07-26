@@ -39,6 +39,7 @@
     <string name="reset">Reset</string>
     <!-- AccountCreationCodeActivity -->
 
+
     <!-- Errors -->
     <string name="no_internet">Not Connected</string>
     <!-- Errors -->
@@ -51,6 +52,10 @@
     <!-- MedRep Main Menu -->
     <string name="signout">Signout</string>
     <!-- MedRep Main Menu -->
+
+    <!-- Admin Main Menu -->
+    <string name="mng_user">Manage Users</string>
+    <!-- Admin Main Menu -->
 
     <!-- Dialogs -->
     <string name="enter_playlist_name">Enter Playlist Name</string>
