@@ -1,5 +1,6 @@
 package com.webhopers.medlog.manageUser
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -14,7 +15,6 @@ import com.webhopers.medlog.adapters.FirebaseListAdapter
 import kotlinx.android.synthetic.main.activity_manage_user.*
 
 class ManageUserActivity : ManageUserView, AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,4 +41,6 @@ class ManageUserActivity : ManageUserView, AppCompatActivity() {
         if (bool) mng_usr_p_bar.visibility = View.VISIBLE
         else mng_usr_p_bar.visibility = View.INVISIBLE
     }
+
+    override fun getContext() = this
 }

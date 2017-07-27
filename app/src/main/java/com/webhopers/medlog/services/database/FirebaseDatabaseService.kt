@@ -101,6 +101,12 @@ class FirebaseDatabaseService {
 
         }
 
+        fun removeUser(uid: String) {
+            database.getReference(users)
+                    .child(uid)
+                    .removeValue()
+        }
+
 
     }
 }
