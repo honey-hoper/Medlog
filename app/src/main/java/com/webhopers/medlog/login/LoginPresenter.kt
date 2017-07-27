@@ -34,12 +34,8 @@ class LoginPresenter(val view: LoginView,
         val email = view.getEmailField().text.toString()
         val password = view.getPasswordField().text.toString()
 
-        if (email ==  resources.getString(R.string.admin) && password == resources.getString(R.string.pass)) {
-            val sessionFile = context.getSharedPreferences(SESSION_FILE, Context.MODE_PRIVATE)
-            val sessionFileEditor = sessionFile.edit()
-            sessionFileEditor.putBoolean(ADMIN_SESSION, true).apply()
-            view.startAdminMainActivity()
-        } else signInUser(email, password)
+        if (email ==  resources.getString(R.string.admin) && password == resources.getString(R.string.pass)) signInAnonymously()
+         else signInUser(email, password)
     }
 
     private fun validInput(): Boolean {
@@ -69,6 +65,22 @@ class LoginPresenter(val view: LoginView,
                             view.showProgressBar(false)
                             view.showInvalidLoginView(true)
                         }))
+    }
+
+    private fun signInAnonymously() {
+        disposable.add(FirebaseAuthService.signInAnonymously()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onComplete = {
+                            view.startAdminMainActivity()
+                        },
+                        onError = {
+                            view.enableButtons(true)
+                            view.showProgressBar(false)
+                            view.showInvalidLoginView(true)
+                        }
+                ))
     }
 
     fun createUserAccount() {

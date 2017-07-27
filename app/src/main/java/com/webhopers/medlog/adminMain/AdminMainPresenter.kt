@@ -33,9 +33,7 @@ class AdminMainPresenter(val context: Context,
     }
 
     fun signout() {
-        val sessionFile = context.getSharedPreferences(SESSION_FILE, Context.MODE_PRIVATE)
-        val sessionFileEditor = sessionFile.edit()
-        sessionFileEditor.putBoolean(ADMIN_SESSION, false).apply()
+        FirebaseAuthService.signOutUser()
         view.startSplashActivity()
     }
 
