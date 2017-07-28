@@ -35,14 +35,6 @@ class FirebaseAuthService {
                     }}
         }
 
-        fun signInAnonymously(): Completable {
-            return Completable.create { e -> auth.signInAnonymously()
-                    .addOnCompleteListener {
-                        if (it.isSuccessful) e.onComplete()
-                        else e.onError(Throwable("Unable to sign in ${it.exception}"))
-                    }}
-        }
-
         fun signOutUser() {
             auth.signOut()
         }

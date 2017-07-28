@@ -7,7 +7,6 @@ import com.google.firebase.database.ValueEventListener
 import com.webhopers.medlog.models.ImageModel
 import com.webhopers.medlog.models.MedRepInfo
 import io.reactivex.Observable
-import io.reactivex.Single
 
 class FirebaseDatabaseService {
 
@@ -15,21 +14,15 @@ class FirebaseDatabaseService {
         val database by lazy { FirebaseDatabase.getInstance() }
 
         val users = "users"
-        val images = "images"
-        val ACC = "ACC"
+        val images = "medicines/images"
+        val ACC = "admin/ACC"
 
         fun createMed(path: String, url: String) {
             val uid = database.getReference(images)
                     .push()
                     .key
 
-            database.getReference(images)
-                    .child(uid)
-                    .push()
-                    .setValue(path)
-
             addMed2(uid, url, path)
-
         }
 
         fun addMed2(uid: String, url: String, path: String) {

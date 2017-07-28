@@ -46,7 +46,7 @@ class AdminMainActivity : AdminMainView, AppCompatActivity() {
         drawerToggle = ActionBarDrawerToggle(this, drawer_admin, R.string.open_drawer, R.string.close_drawer)
 
         exp_list_view_admin.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-            path = v.list_item.text.toString()
+            path = "medicines/${v.list_item.text.toString()}"
             presenter.changeRecyclerViewAdapter(path, resources)
             drawer_admin.closeDrawers()
             upload_button.visibility = View.VISIBLE

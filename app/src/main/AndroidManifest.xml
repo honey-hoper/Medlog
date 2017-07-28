@@ -26,16 +26,21 @@
         <activity
             android:name=".medRepMain.MedRepMainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme2" />
+            android:theme="@style/AppTheme2" >
+
+        </activity>
+
         <activity
             android:name=".splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Splash">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".adminMain.AdminMainActivity"
@@ -48,8 +53,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".accountCreationCode.AccountCreationCodeActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".manageUser.ManageUserActivity"></activity>
+            android:screenOrientation="portrait"/>
+        <activity android:name=".manageUser.ManageUserActivity"/>
     </application>
 
 </manifest>

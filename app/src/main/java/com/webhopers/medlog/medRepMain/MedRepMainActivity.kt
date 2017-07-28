@@ -40,7 +40,7 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
         drawerToggle = ActionBarDrawerToggle(this, drawer_mr, R.string.open_drawer, R.string.close_drawer)
 
         exp_list_view_mr.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-            presenter.changeRecyclerViewAdapter(v.list_item.text.toString(), resources)
+            presenter.changeRecyclerViewAdapter("medicines/${v.list_item.text.toString()}", resources)
             drawer_mr.closeDrawers()
             return@setOnChildClickListener  false
         }

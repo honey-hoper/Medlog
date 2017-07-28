@@ -16,8 +16,6 @@ class LoginPresenter(val view: LoginView,
                      val resources: Resources,
                      val disposable: CompositeDisposable = CompositeDisposable()) {
 
-    private val SESSION_FILE = "SESSION_FILE"
-    private val ADMIN_SESSION = "ADMIN_SESSION"
 
     fun onLogin() {
         if (!validInput()) return
@@ -34,7 +32,7 @@ class LoginPresenter(val view: LoginView,
         val email = view.getEmailField().text.toString()
         val password = view.getPasswordField().text.toString()
 
-        if (email ==  resources.getString(R.string.admin) && password == resources.getString(R.string.pass)) signInAnonymously()
+        if (email ==  resources.getString(R.string.admin) && password == resources.getString(R.string.pass)) signInUser("admin@main.com", "123456", true)
          else signInUser(email, password)
     }
 
@@ -52,35 +50,20 @@ class LoginPresenter(val view: LoginView,
         return true
     }
 
-    private fun signInUser(email: String, password: String) {
+    private fun signInUser(email: String, password: String, isAdmin: Boolean = false) {
         disposable.add(FirebaseAuthService.signInUser(email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onComplete = {
-                            view.startMedRepActivity()
+                            if (isAdmin) view.startAdminMainActivity()
+                            else view.startMedRepActivity()
                         },
                         onError = {
                             view.enableButtons(true)
                             view.showProgressBar(false)
                             view.showInvalidLoginView(true)
                         }))
-    }
-
-    private fun signInAnonymously() {
-        disposable.add(FirebaseAuthService.signInAnonymously()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(
-                        onComplete = {
-                            view.startAdminMainActivity()
-                        },
-                        onError = {
-                            view.enableButtons(true)
-                            view.showProgressBar(false)
-                            view.showInvalidLoginView(true)
-                        }
-                ))
     }
 
     fun createUserAccount() {
