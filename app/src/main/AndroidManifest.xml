@@ -46,7 +46,9 @@
             android:name=".adminMain.AdminMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2" />
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"
+            />
         <activity
             android:name=".managePlaylist.ManagePlaylistActivity"
             android:screenOrientation="portrait"
