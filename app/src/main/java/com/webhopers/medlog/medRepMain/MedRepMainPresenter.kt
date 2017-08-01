@@ -64,7 +64,8 @@ class MedRepMainPresenter(val view: MedRepMainView,
         }
 
         val dialog = Dialog(activity)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+       // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setTitle("Open")
         dialog.setContentView(R.layout.playlist_picker_dialog)
 
         val picker = dialog.playlist_picker

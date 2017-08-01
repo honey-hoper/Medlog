@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:inputType="text"
-        android:maxLength="20"
+        android:maxLength="15"
         android:theme="@style/ColoredEditText"/>
 
     <Button
