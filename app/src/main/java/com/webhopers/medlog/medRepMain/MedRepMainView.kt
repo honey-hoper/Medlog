@@ -14,4 +14,5 @@ interface MedRepMainView : ViewInterface{
     fun startIntentActivity(intent: Intent)
     fun makeToast(message: String)
     fun startManagePlaylistActivity()
+    fun startListProductsActivity()
 }

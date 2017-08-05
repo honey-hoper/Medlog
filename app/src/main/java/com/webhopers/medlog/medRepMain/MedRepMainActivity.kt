@@ -15,6 +15,7 @@ import com.webhopers.medlog.adapters.ExpandableListAdapter
 
 import com.webhopers.medlog.R
 import com.webhopers.medlog.adapters.itemDecorator.RecyclerViewDecorator
+import com.webhopers.medlog.listProducts.ListProductsActivity
 import com.webhopers.medlog.managePlaylist.ManagePlaylistActivity
 import com.webhopers.medlog.splash.SplashActivity
 import com.webhopers.medlog.utils.convertDpToPixels
@@ -62,6 +63,7 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
             R.id.signout_option_mr -> presenter.signout()
             R.id.saved_option_mr -> presenter.showPlaylistPicker()
             R.id.manage_playlists -> startManagePlaylistActivity()
+            R.id.list_products -> startListProductsActivity()
         }
 
         return super.onOptionsItemSelected(item)
@@ -138,6 +140,8 @@ class MedRepMainActivity: MedRepMainView, AppCompatActivity() {
     override fun makeToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
     override fun startManagePlaylistActivity() = startActivity(Intent(this, ManagePlaylistActivity::class.java))
+
+    override fun startListProductsActivity() = startActivity(Intent(this, ListProductsActivity::class.java))
 
     override fun getRootLayout() = med_rep_root
 

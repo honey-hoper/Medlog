@@ -10,4 +10,6 @@
     <color name="colorPrimaryTransparent">#55005691</color>
     <color name="colorAccentTransparent">#11FAFAFA</color>
 
+    <color name="colorAccent2">#FF4343</color>
+
 </resources>

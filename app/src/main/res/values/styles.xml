@@ -48,6 +48,13 @@
 
     </style>
 
+    <style name="AccentColoredButton2" parent="Base.Widget.AppCompat.Button.Borderless.Colored">
+        <item name="colorButtonNormal">@color/colorAccent2</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="AccentColorButton" parent="Base.Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="android:textColor">@color/colorPrimary</item>

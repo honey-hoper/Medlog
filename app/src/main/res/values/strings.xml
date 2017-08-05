@@ -39,6 +39,11 @@
     <string name="reset">Reset</string>
     <!-- AccountCreationCodeActivity -->
 
+    <!-- ListProductsActivity -->
+    <string name="price">Price:</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <!-- ListProductsActivity -->
+
 
     <!-- Errors -->
     <string name="no_internet">Not Connected</string>
@@ -50,6 +55,8 @@
     <!--Product Group Name-->
 
     <!-- MedRep Main Menu -->
+    <string name="list_products">Products</string>
+    <string name="manage_playlist">Manage Playlist</string>
     <string name="signout">Signout</string>
     <!-- MedRep Main Menu -->
 
