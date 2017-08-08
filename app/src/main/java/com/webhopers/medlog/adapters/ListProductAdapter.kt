@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.webhopers.medlog.R
+import com.webhopers.medlog.dialogs.ProductQuantityDialog
 import com.webhopers.medlog.extensions.inflateView
 import com.webhopers.medlog.models.WooCommProduct
 import com.webhopers.medlog.services.woocommerce.WooCommService
@@ -27,7 +28,8 @@ class ListProductAdapter(val dataset: MutableList<WooCommProduct>): RecyclerView
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val name = dataset[position].name
         val price = dataset[position].price
-        holder.bindData(name, price, position)
+        val quantity = dataset[position].stockQuantity
+        holder.bindData(name, price, quantity)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -63,8 +65,9 @@ class ListProductAdapter(val dataset: MutableList<WooCommProduct>): RecyclerView
         })
     }
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        fun bindData(name: String, price: String, position: Int) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
+        fun bindData(name: String, price: String, quantity: Int) {
             if (name == "")
                 itemView.product_name.text = "N/A"
             else
@@ -74,8 +77,9 @@ class ListProductAdapter(val dataset: MutableList<WooCommProduct>): RecyclerView
             else
                 itemView.product_price.text = "$price Rs"
 
-            itemView.add_to_cart_button.setOnClickListener { println("Add to Cart $position") }
+            itemView.add_to_cart_button.setOnClickListener {ProductQuantityDialog(itemView.context, name, quantity)}
         }
+
     }
 
     class ScrollListener(
