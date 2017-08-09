@@ -61,6 +61,6 @@ class ListProductsPresenter(val view: ListProductsView) {
             addItemDecoration(itemDecoration)
         }
 
-        }
+    }
 }
 

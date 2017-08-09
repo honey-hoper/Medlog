@@ -84,5 +84,9 @@
         <item name="android:textColorSecondary">@color/colorAccent</item>
     </style>
 
+    <style name="ProgressBar" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
 
 </resources>
