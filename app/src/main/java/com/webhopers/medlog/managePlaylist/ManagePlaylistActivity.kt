@@ -32,6 +32,8 @@ class ManagePlaylistActivity :
         presenter = ManagePlaylistPresenter(this)
         setSupportActionBar(toolbar_manage_playlist)
 
+        setUpToolbar()
+
 
         val adapter = ListAdapter(presenter.getPlaylists())
         manage_playlist_recycler_view.adapter = adapter
@@ -57,6 +59,17 @@ class ManagePlaylistActivity :
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun setUpToolbar() {
+        setSupportActionBar(toolbar_manage_playlist)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     // View Functions

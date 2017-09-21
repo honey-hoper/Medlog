@@ -1,12 +1,11 @@
 package com.webhopers.medlog.manageUser
 
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.view.Menu
 import android.view.View
 import com.google.firebase.database.FirebaseDatabase
 
@@ -19,6 +18,8 @@ class ManageUserActivity : ManageUserView, AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_user)
+
+        setUpToolbar()
 
         showProgressBar(true)
 
@@ -34,6 +35,24 @@ class ManageUserActivity : ManageUserView, AppCompatActivity() {
         itemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider))
         mng_usr_rec_view.addItemDecoration(itemDecoration)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.default_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun setUpToolbar() {
+        setSupportActionBar(toolbar_manage_user)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+
 
     // ManageUserView functions
 

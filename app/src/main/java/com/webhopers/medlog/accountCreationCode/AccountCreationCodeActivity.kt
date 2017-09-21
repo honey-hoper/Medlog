@@ -2,6 +2,7 @@ package com.webhopers.medlog.accountCreationCode
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 
 import com.webhopers.medlog.R
@@ -15,6 +16,8 @@ class AccountCreationCodeActivity : AccountCreationCodeView, AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_creation_code)
 
+        setUpToolbar()
+
         presenter = AccountCreationCodePresenter(this)
         acc_reset_btn.setOnClickListener { presenter.setACC() }
     }
@@ -22,6 +25,22 @@ class AccountCreationCodeActivity : AccountCreationCodeView, AppCompatActivity()
     override fun onDestroy() {
         super.onDestroy()
         presenter.unsubscribe()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.default_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun setUpToolbar() {
+        setSupportActionBar(toolbar_acc)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     // AccountCreationCode View Functions

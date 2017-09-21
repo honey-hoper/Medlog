@@ -51,9 +51,11 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".accountCreationCode.AccountCreationCodeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".manageUser.ManageUserActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".listProducts.ListProductsActivity"
             android:screenOrientation="portrait"/>
     </application>
